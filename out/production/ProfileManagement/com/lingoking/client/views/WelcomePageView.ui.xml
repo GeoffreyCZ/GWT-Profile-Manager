@@ -1,0 +1,9 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel>
+        <g:Label ui:field="mainLabel">Profile Management</g:Label>
+        <g:Button ui:field="createProfileButton">Create new profile</g:Button>
+        <g:Button ui:field="editProfileButton">Edit existing profile</g:Button>
+        <g:Button ui:field="listProfilesButton">List profiles</g:Button>
+    </g:HTMLPanel>
+</ui:UiBinder>

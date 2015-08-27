@@ -1,0 +1,9 @@
+# Mac / Windows hidden files 
+.DS_Store 
+Thumbs.db 
+ 
+# Jetbrains project 
+.idea/ 
+ 
+# Library is a sub-repository 
+Library/

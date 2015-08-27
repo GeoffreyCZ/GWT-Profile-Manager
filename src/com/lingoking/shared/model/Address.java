@@ -1,0 +1,51 @@
+package com.lingoking.shared.model;
+
+public class Address {
+    private String street;
+    private String streetNumber;
+    private String city;
+    private String postcode;
+
+    public Address(){
+        this("Kamenicka", "263", "Decin", "40501");
+    }
+
+    public Address(String street, String streetNumber, String city, String postcode) {
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.city = city;
+        this.postcode = postcode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+}
