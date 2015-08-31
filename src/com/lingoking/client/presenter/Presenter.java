@@ -1,7 +1,8 @@
 package com.lingoking.client.presenter;
 
-import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.HasWidgets;
 
 public interface Presenter {
-    void go(Panel panel);
+    void go(final HasWidgets container);
 }
+

@@ -1,24 +1,69 @@
 package com.lingoking.server;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import com.lingoking.shared.model.Profile;
+import com.lingoking.shared.model.ProfileDetails;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ConnectionConfiguration {
 
-    public static final String USER_NAME_DB = "geoffrey";
-    public static final String PASSWORD_DB = "pdbpass159753";
-    public static final String DB_IP = "134.119.42.29";
+    public static final String USER_NAME_DB = "root"; //"geoffrey";
+    public static final String PASSWORD_DB = ""; //"pdbpass159753";
+    public static final String DB_IP = "127.0.0.1"; // 134.119.42.29";
+    public static final String DB_NAME = "profileDB";
+    public static final String TABLE_NAME = "profiles";
 
     public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://" + DB_IP + "profileDB", USER_NAME_DB, PASSWORD_DB);
+            connection = DriverManager.getConnection("jdbc:mysql://" + DB_IP + "/" + DB_NAME, USER_NAME_DB, PASSWORD_DB);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return connection;
     }
 
+    public static void insertIntoDB(Profile profile) {
+        Connection connection;
+        Statement statement;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+
+            String sql = "INSERT INTO " + DB_NAME + "." + TABLE_NAME + " VALUES (null , '" +
+                    profile.getFirstName() + "', '" +
+                    profile.getLastName() + "', '" +
+                    profile.getEmail() + "');";
+            statement.executeUpdate(sql);
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Profile> selectFromDB() {
+        Profile profile = new Profile();
+        ArrayList<Profile> listOfProfiles = new ArrayList<>();
+        Connection connection;
+        Statement statement;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            String sql = "SELECT firstName, lastName, email FROM " + DB_NAME + "." + TABLE_NAME + ";";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                profile.setFirstName(rs.getString("firstName"));
+                profile.setLastName(rs.getString("lastName"));
+                System.out.println(profile.getFirstName() + " " + profile.getLastName() + " " + profile.getEmail());
+                listOfProfiles.add(profile);
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+        return listOfProfiles;
+    }
 }

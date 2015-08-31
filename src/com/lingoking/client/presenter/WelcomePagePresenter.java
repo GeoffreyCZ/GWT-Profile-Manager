@@ -1,63 +1,58 @@
 package com.lingoking.client.presenter;
 
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.lingoking.client.views.CreateProfileView;
-import com.lingoking.client.views.EditProfileView;
-import com.lingoking.client.views.ListProfilesView;
-import com.lingoking.shared.model.Profile;
+import com.lingoking.client.ProfilesServiceAsync;
+import com.lingoking.client.events.CreateProfileEvent;
+import com.lingoking.client.events.EditProfileEvent;
+import com.lingoking.client.events.ShowProfileListEvent;
+import com.lingoking.shared.model.ProfileDetails;
 
-public class WelcomePagePresenter implements Presenter{
+import java.util.ArrayList;
+import java.util.List;
 
-    Display display;
+/**
+ * Created by Michal on 31. 8. 2015.
+ */
+public class WelcomePagePresenter implements Presenter {
 
     public interface Display {
-        void clear();
+        HasClickHandlers getCreateButton();
+        HasClickHandlers getListButton();
         Widget asWidget();
-        void setPresenter(WelcomePagePresenter presenter);
-
     }
 
-    public WelcomePagePresenter(Display display) {
-        this.display = display;
-        bind();
+    private final HandlerManager eventBus;
+    private final Display display;
+
+    public WelcomePagePresenter(HandlerManager eventBus, Display view) {
+        this.eventBus = eventBus;
+        this.display = view;
     }
 
     public void bind() {
-        display.setPresenter(this);
-        display.clear();
+        display.getCreateButton().addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                eventBus.fireEvent(new CreateProfileEvent());
+            }
+        });
+
+        display.getListButton().addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                eventBus.fireEvent(new ShowProfileListEvent());
+            }
+        });
     }
 
-    @Override
-    public void go(Panel panel) {
-        panel.add(display.asWidget());
-    }
-
-    public void onCreateProfileButtonClicked() {
-        RootPanel.get().clear();
-        Profile me = new Profile();
-        CreateProfileView view = new CreateProfileView();
-        CreateProfilePresenter presenter = new CreateProfilePresenter(view);
-        presenter.go(RootPanel.get());
-        History.newItem("CreateProfile");
-    }
-
-    public void onEditProfileButtonClicked() {
-        RootPanel.get().clear();
-        EditProfileView view = new EditProfileView();
-        EditProfilePresenter presenter = new EditProfilePresenter(view);
-        presenter.go(RootPanel.get());
-
-    }
-
-    public void onListProfilesButtonClicked() {
-        RootPanel.get().clear();
-        Profile me = new Profile();
-        ListProfilesView view = new ListProfilesView();
-        ListProfilesPresenter presenter = new ListProfilesPresenter(me, view);
-        presenter.go(RootPanel.get());
-
+    public void go(final HasWidgets container) {
+        bind();
+        container.clear();
+        container.add(display.asWidget());
     }
 }

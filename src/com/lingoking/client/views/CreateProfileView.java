@@ -2,57 +2,82 @@ package com.lingoking.client.views;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.CreateProfilePresenter;
 
-public class CreateProfileView extends Composite implements CreateProfilePresenter.Display{
-    private static CreateProfileViewUiBinder ourUiBinder = GWT.create(CreateProfileViewUiBinder.class);
-
-    private CreateProfilePresenter presenter;
+public class CreateProfileView extends Composite implements CreateProfilePresenter.Display {
+    private final TextBox firstName;
+    private final TextBox lastName;
+    private final TextBox emailAddress;
+    private final FlexTable detailsTable;
+    private final Button createButton;
+    private final Button cancelButton;
 
     public CreateProfileView() {
-        initWidget(ourUiBinder.createAndBindUi(this));
+        DecoratorPanel contentDetailsDecorator = new DecoratorPanel();
+        contentDetailsDecorator.setWidth("18em");
+        initWidget(contentDetailsDecorator);
+
+        VerticalPanel contentDetailsPanel = new VerticalPanel();
+        contentDetailsPanel.setWidth("100%");
+
+        // Create the contacts list
+        //
+        detailsTable = new FlexTable();
+        detailsTable.setCellSpacing(0);
+        detailsTable.setWidth("100%");
+        detailsTable.addStyleName("contacts-ListContainer");
+        detailsTable.getColumnFormatter().addStyleName(1, "add-contact-input");
+        firstName = new TextBox();
+        lastName = new TextBox();
+        emailAddress = new TextBox();
+        initDetailsTable();
+        contentDetailsPanel.add(detailsTable);
+
+        HorizontalPanel menuPanel = new HorizontalPanel();
+        createButton = new Button("Create");
+        cancelButton = new Button("Cancel");
+        menuPanel.add(createButton);
+        menuPanel.add(cancelButton);
+        contentDetailsPanel.add(menuPanel);
+        contentDetailsDecorator.add(contentDetailsPanel);
     }
 
-    public CreateProfileView(String firstName) {
-        initWidget(ourUiBinder.createAndBindUi(this));
+    private void initDetailsTable() {
+        detailsTable.setWidget(0, 0, new Label("Firstname"));
+        detailsTable.setWidget(0, 1, firstName);
+        detailsTable.setWidget(1, 0, new Label("Lastname"));
+        detailsTable.setWidget(1, 1, lastName);
+        detailsTable.setWidget(2, 0, new Label("Email Address"));
+        detailsTable.setWidget(2, 1, emailAddress);
+        firstName.setFocus(true);
     }
 
-    @UiField
-    Label createProfileLabel;
-
-    @UiField
-    Button button;
-
-    @UiHandler("button")
-    void onClick(ClickEvent e) {
-        if (presenter != null) {
-            presenter.onShowProfile();
-        }
+    public HasValue<String> getFirstName() {
+        return firstName;
     }
 
-    @Override
-    public void clear() {
-        createProfileLabel.setText("");
+    public HasValue<String> getLastName() {
+        return lastName;
     }
 
-    @Override
-    public void setName(String name) {
-        this.createProfileLabel.setText(name);
-
+    public HasValue<String> getEmail() {
+        return emailAddress;
     }
 
-    @Override
-    public void setPresenter(CreateProfilePresenter presenter) {
-        this.presenter = presenter;
+    public HasClickHandlers getCreateButton() {
+        return createButton;
     }
 
-    interface CreateProfileViewUiBinder extends UiBinder<Widget, CreateProfileView> {
+    public HasClickHandlers getCancelButton() {
+        return cancelButton;
+    }
+
+    public Widget asWidget() {
+        return this;
     }
 }

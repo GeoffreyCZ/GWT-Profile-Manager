@@ -1,7 +1,10 @@
 package com.lingoking.shared.model;
 
-public class Profile {
+import java.io.Serializable;
 
+public class Profile implements Serializable {
+
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -11,17 +14,37 @@ public class Profile {
     private String avatar;
 
     public Profile() {
-        this("Michal", "Kroupa", "michal.kroupa@lingoking.com", "kreslo", "723126098", new Address(), "obrazek");
+//        this("1", "Michal", "Kroupa", "michal.kroupa@lingoking.com", "kreslo", "723126098", new Address(), "obrazek");
     }
 
-    public Profile(String firstName, String lastName, String email, String password, String phoneNumber, Address address, String avatar) {
+    public Profile(String id, String firstName, String lastName, String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.avatar = avatar;
+    }
+
+    public ProfileDetails getLightWeightContact() {
+        return new ProfileDetails(id, getFirstName() + " " + getLastName());
+    }
+
+//    public Profile(String id, String firstName, String lastName, String email, String password, String phoneNumber, Address address, String avatar) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.password = password;
+//        this.phoneNumber = phoneNumber;
+//        this.address = address;
+//        this.avatar = avatar;
+//    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -39,6 +62,8 @@ public class Profile {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getWholeName() {return firstName + " " + lastName;}
 
     public String getEmail() {
         return email;

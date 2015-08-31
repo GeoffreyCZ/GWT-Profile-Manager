@@ -1,6 +1,8 @@
 package com.lingoking.shared.model;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable{
     private String street;
     private String streetNumber;
     private String city;
