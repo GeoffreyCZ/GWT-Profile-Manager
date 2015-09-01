@@ -104,4 +104,9 @@ public class Profile implements Serializable {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    @Override
+    public String toString() {
+        return ("StudentName:"+this.getFirstName() + getLastName());
+    }
 }

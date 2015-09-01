@@ -59,6 +59,13 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
                         doProfileUpdated();
                     }
                 });
+
+        eventBus.addHandler(ShowProfileListEvent.TYPE, new ShowProfileListEventHandler() {
+            @Override
+            public void onShowProfileList(ShowProfileListEvent event) {
+                doShowProfileList();
+            }
+        });
     }
 
     private void doCreateProfile() {
@@ -77,6 +84,12 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 
     private void doProfileUpdated() {
         History.newItem("list");
+    }
+
+    private void doShowProfileList() {
+        History.newItem("list", false);
+            Presenter presenter = new ListProfilesPresenter(rpcService, eventBus, new ListProfilesView());
+            presenter.go(container);
     }
 
     public void go(final HasWidgets container) {

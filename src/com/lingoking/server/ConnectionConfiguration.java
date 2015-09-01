@@ -7,6 +7,7 @@ import com.lingoking.shared.model.ProfileDetails;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ConnectionConfiguration {
 
@@ -22,7 +23,7 @@ public class ConnectionConfiguration {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + DB_IP + "/" + DB_NAME, USER_NAME_DB, PASSWORD_DB);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Connection to the DB failed: " + e);
         }
         return connection;
     }
@@ -45,8 +46,7 @@ public class ConnectionConfiguration {
         }
     }
 
-    public static ArrayList<Profile> selectFromDB() {
-        Profile profile = new Profile();
+    public static ArrayList<Profile> fetchAllProfilesFromDB() {
         ArrayList<Profile> listOfProfiles = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -56,9 +56,7 @@ public class ConnectionConfiguration {
             String sql = "SELECT firstName, lastName, email FROM " + DB_NAME + "." + TABLE_NAME + ";";
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                profile.setFirstName(rs.getString("firstName"));
-                profile.setLastName(rs.getString("lastName"));
-                System.out.println(profile.getFirstName() + " " + profile.getLastName() + " " + profile.getEmail());
+                Profile profile = new Profile(null, rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"));
                 listOfProfiles.add(profile);
             }
         } catch (SQLException se) {

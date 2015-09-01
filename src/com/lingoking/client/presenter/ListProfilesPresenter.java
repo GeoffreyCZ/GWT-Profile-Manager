@@ -10,9 +10,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
 import com.lingoking.client.events.CreateProfileEvent;
-import com.lingoking.client.events.EditProfileEvent;
 import com.lingoking.shared.model.Profile;
-import com.lingoking.shared.model.ProfileDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ public class ListProfilesPresenter implements Presenter {
     public interface Display {
         HasClickHandlers getCreateButton();
         HasClickHandlers getDeleteButton();
-        HasClickHandlers getList();
+//        HasClickHandlers getList();
         void setData(List<String> data);
         int getClickedRow(ClickEvent event);
         List<Integer> getSelectedRows();
@@ -54,26 +52,26 @@ public class ListProfilesPresenter implements Presenter {
             }
         });
 
-        display.getList().addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                int selectedRow = display.getClickedRow(event);
-
-                if (selectedRow >= 0) {
-                    String id = profile.get(selectedRow).getId();
-                    eventBus.fireEvent(new EditProfileEvent(id));
-                }
-            }
-        });
+//        display.getList().addClickHandler(new ClickHandler() {
+//            public void onClick(ClickEvent event) {
+//                int selectedRow = display.getClickedRow(event);
+//
+//                if (selectedRow >= 0) {
+//                    String id = profile.get(selectedRow).getId();
+//                    eventBus.fireEvent(new EditProfileEvent(id));
+//                }
+//            }
+//        });
     }
 
     public void go(final HasWidgets container) {
         bind();
         container.clear();
         container.add(display.asWidget());
-        fetchContactDetails();
+        fetchProfileList();
     }
 
-    public void sortContactDetails() {
+    public void sortProfileList() {
 
         // Yes, we could use a more optimized method of sorting, but the
         //  point is to create a test case that helps illustrate the higher
@@ -98,22 +96,22 @@ public class ListProfilesPresenter implements Presenter {
         return profile.get(index);
     }
 
-    private void fetchContactDetails() {
+    private void fetchProfileList() {
         rpcService.getListOfProfiles(new AsyncCallback<ArrayList<Profile>>() {
             public void onSuccess(ArrayList<Profile> result) {
                 profile = result;
-                sortContactDetails();
+                sortProfileList();
                 List<String> data = new ArrayList<String>();
 
                 for (int i = 0; i < result.size(); ++i) {
-                    data.add(profile.get(i).getFirstName());
+                    data.add(profile.get(i).getFirstName() + " " + profile.get(i).getLastName());
                 }
 
                 display.setData(data);
             }
 
             public void onFailure(Throwable caught) {
-                Window.alert("Error fetching contact details");
+                Window.alert("Error fetching profile details");
             }
         });
     }
@@ -129,15 +127,13 @@ public class ListProfilesPresenter implements Presenter {
         rpcService.deleteProfiles(ids, new AsyncCallback<ArrayList<Profile>>() {
             public void onSuccess(ArrayList<Profile> result) {
                 profile = result;
-                sortContactDetails();
+                sortProfileList();
                 List<String> data = new ArrayList<String>();
 
                 for (int i = 0; i < result.size(); ++i) {
                     data.add(profile.get(i).getWholeName());
                 }
-
                 display.setData(data);
-
             }
 
             public void onFailure(Throwable caught) {

@@ -1,7 +1,0 @@
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <g:HTMLPanel>
-        <g:Label ui:field="createProfileLabel">There will be a tool to create profile. Soon(TM)</g:Label>
-        <g:Button ui:field="button">Show full name</g:Button>
-    </g:HTMLPanel>
-</ui:UiBinder>

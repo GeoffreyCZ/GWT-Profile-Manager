@@ -3,11 +3,9 @@ package com.lingoking.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import com.lingoking.client.ProfilesService;
 import com.lingoking.shared.model.Profile;
-import com.lingoking.shared.model.ProfileDetails;
 
 @SuppressWarnings("serial")
 public class ProfilesServiceImpl extends RemoteServiceServlet implements
@@ -60,9 +58,9 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
     }
 
     public ArrayList<Profile> getListOfProfiles() {
-        ArrayList<Profile> profileDetails = new ArrayList<Profile>();
-        profileDetails = ConnectionConfiguration.selectFromDB();
-        return profileDetails;
+        ArrayList<Profile> profiles;
+        profiles = ConnectionConfiguration.fetchAllProfilesFromDB();
+        return profiles;
     }
 
     public Boolean deleteProfile(String id) {

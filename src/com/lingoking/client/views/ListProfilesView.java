@@ -40,9 +40,9 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         hPanel.setBorderWidth(0);
         hPanel.setSpacing(0);
         hPanel.setHorizontalAlignment(HorizontalPanel.ALIGN_LEFT);
-        createButton = new Button("Add");
+        createButton = new Button("Create new profile");
         hPanel.add(createButton);
-        deleteButton = new Button("Delete");
+        deleteButton = new Button("Delete selected profiles");
         hPanel.add(deleteButton);
         contentTable.getCellFormatter().addStyleName(0, 0, "contacts-ListMenu");
         contentTable.setWidget(0, 0, hPanel);
