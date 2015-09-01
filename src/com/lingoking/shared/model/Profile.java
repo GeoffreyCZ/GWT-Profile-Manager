@@ -14,7 +14,6 @@ public class Profile implements Serializable {
     private String avatar;
 
     public Profile() {
-//        this("1", "Michal", "Kroupa", "michal.kroupa@lingoking.com", "kreslo", "723126098", new Address(), "obrazek");
     }
 
     public Profile(String id, String firstName, String lastName, String email) {
@@ -24,8 +23,10 @@ public class Profile implements Serializable {
         this.email = email;
     }
 
-    public ProfileDetails getLightWeightContact() {
-        return new ProfileDetails(id, getFirstName() + " " + getLastName());
+    public void setProfileName (String firstName, String lastName) {
+        Profile profile = new Profile();
+        profile.setFirstName(firstName);
+        profile.setLastName(lastName);
     }
 
 //    public Profile(String id, String firstName, String lastName, String email, String password, String phoneNumber, Address address, String avatar) {
@@ -107,6 +108,6 @@ public class Profile implements Serializable {
 
     @Override
     public String toString() {
-        return ("StudentName:"+this.getFirstName() + getLastName());
+        return ("Profile name: "+ this.getFirstName() + getLastName());
     }
 }

@@ -7,9 +7,7 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.lingoking.client.events.*;
 import com.lingoking.client.presenter.*;
-import com.lingoking.client.views.CreateProfileView;
-import com.lingoking.client.views.ListProfilesView;
-import com.lingoking.client.views.WelcomePageView;
+import com.lingoking.client.views.*;
 
 public class AppController implements Presenter, ValueChangeHandler<String> {
     private final HandlerManager eventBus;
@@ -35,7 +33,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         eventBus.addHandler(EditProfileEvent.TYPE,
                 new EditProfileEventHandler() {
                     public void onEditProfile(EditProfileEvent event) {
-                        doEditProfile(event.getId());
+                        doEditProfile();
                     }
                 });
 
@@ -52,6 +50,13 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
                         doEditProfileCancelled();
                     }
                 });
+
+        eventBus.addHandler(ShowProfileEvent.TYPE, new ShowProfileEventHandler() {
+            @Override
+            public void onShowProfile(ShowProfileEvent event) {
+                doShowProfile();
+            }
+        });
 
         eventBus.addHandler(ProfileCreatedEvent.TYPE,
                 new ProfileCreatedEventHandler() {
@@ -72,9 +77,13 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         History.newItem("create");
     }
 
-    private void doEditProfile(String id) {
+    private void doShowProfile() {
+        History.newItem("profile");
+    }
+
+    private void doEditProfile() {
         History.newItem("edit", false);
-        Presenter presenter = new CreateProfilePresenter(rpcService, eventBus, new CreateProfileView());
+        Presenter presenter = new EditProfilePresenter(rpcService, eventBus, new EditProfileView());
         presenter.go(container);
     }
 
@@ -117,8 +126,11 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
             if (token.equals("create")) {
                 presenter = new CreateProfilePresenter(rpcService, eventBus, new CreateProfileView());
             }
+            else if (token.equals("profile")) {
+                presenter = new ProfilePresenter(rpcService, eventBus, new ProfileView());
+            }
             else if (token.equals("edit")) {
-                presenter = new CreateProfilePresenter(rpcService, eventBus, new CreateProfileView());
+                presenter = new EditProfilePresenter(rpcService, eventBus, new EditProfileView());
             }
             if (presenter != null) {
                 presenter.go(container);

@@ -4,13 +4,6 @@ import com.google.gwt.event.shared.GwtEvent;
 
 public class EditProfileEvent extends GwtEvent<EditProfileEventHandler>{
     public static Type<EditProfileEventHandler> TYPE = new Type<EditProfileEventHandler>();
-    private final String id;
-
-    public EditProfileEvent(String id) {
-        this.id = id;
-    }
-
-    public String getId() { return id; }
 
     @Override
     public Type<EditProfileEventHandler> getAssociatedType() {

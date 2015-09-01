@@ -19,12 +19,10 @@ public class WelcomePageView extends Composite implements WelcomePagePresenter.D
 
         contentTable = new FlexTable();
         contentTable.setWidth("100%");
-        contentTable.getCellFormatter().addStyleName(0, 0, "contacts-ListContainer");
+        contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListContainer");
         contentTable.getCellFormatter().setWidth(0, 0, "100%");
         contentTable.getFlexCellFormatter().setVerticalAlignment(0, 0, DockPanel.ALIGN_TOP);
 
-        // Create the menu
-        //
         HorizontalPanel hPanel = new HorizontalPanel();
         hPanel.setBorderWidth(0);
         hPanel.setSpacing(0);
@@ -35,16 +33,13 @@ public class WelcomePageView extends Composite implements WelcomePagePresenter.D
         hPanel.add(createButton);
         showProfileListButton = new Button("Show list of profiles");
         hPanel.add(showProfileListButton);
-        contentTable.getCellFormatter().addStyleName(0, 0, "contacts-ListMenu");
+        contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListMenu");
         contentTable.setWidget(0, 0, hPanel);
 
-        // Create the contacts list
-        //
         profilesTable = new FlexTable();
         profilesTable.setCellSpacing(0);
         profilesTable.setCellPadding(0);
         profilesTable.setWidth("100%");
-        profilesTable.addStyleName("contacts-ListContents");
         profilesTable.getColumnFormatter().setWidth(0, "15px");
         contentTable.setWidget(1, 0, profilesTable);
 

@@ -1,4 +1,4 @@
-.contacts-ListRow td {
+.profiles-ListRow td {
   border-bottom: 1px solid #E2E2E2;
 }
 
@@ -20,42 +20,42 @@ th, td {
   padding: 0px;
 }
   
-td.add-contact-label {
+td.add-profile-label {
   text-align: left;
 }
 
-add-contact-input {
+add-profile-input {
   border: 1px solid red;
   border-collapse: collapse;
   margin-right: 0px;
   margin-left: auto;
 }
   
-td.contacts-NavContainer {
+td.profiles-NavContainer {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-td.contacts-ListMenu {
+td.profiles-ListMenu {
   background-color: #D0E4F6;
   padding-bottom: 6px;
 }
 
-td.contacts-ListContainer {
+td.profiles-ListContainer {
   padding-right: 10px;
 }
 
-.contacts-HeaderContainer {
+.profiles-HeaderContainer {
   padding-right: 10px;
 }
 
-td.contacts-ListCheckbox {
+td.profiles-ListCheckbox {
   padding-right: 4px;
   padding-top: 2px;
   padding-bottom: 2px;
 }
 
-td.contacts-ListName {
+td.profiles-ListName {
   padding-top: 2px;
   padding-bottom: 2px;
 }

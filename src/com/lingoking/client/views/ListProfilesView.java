@@ -30,12 +30,10 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
 
         contentTable = new FlexTable();
         contentTable.setWidth("100%");
-        contentTable.getCellFormatter().addStyleName(0, 0, "contacts-ListContainer");
+        contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListContainer");
         contentTable.getCellFormatter().setWidth(0, 0, "100%");
         contentTable.getFlexCellFormatter().setVerticalAlignment(0, 0, DockPanel.ALIGN_TOP);
 
-        // Create the menu
-        //
         HorizontalPanel hPanel = new HorizontalPanel();
         hPanel.setBorderWidth(0);
         hPanel.setSpacing(0);
@@ -44,16 +42,13 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         hPanel.add(createButton);
         deleteButton = new Button("Delete selected profiles");
         hPanel.add(deleteButton);
-        contentTable.getCellFormatter().addStyleName(0, 0, "contacts-ListMenu");
+        contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListMenu");
         contentTable.setWidget(0, 0, hPanel);
 
-        // Create the contacts list
-        //
         profilesTable = new FlexTable();
         profilesTable.setCellSpacing(0);
         profilesTable.setCellPadding(0);
         profilesTable.setWidth("100%");
-        profilesTable.addStyleName("contacts-ListContents");
         profilesTable.getColumnFormatter().setWidth(0, "15px");
         contentTable.setWidget(1, 0, profilesTable);
 
@@ -68,13 +63,8 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         return deleteButton;
     }
 
-    public HasClickHandlers getList() {
-        return profilesTable;
-    }
-
     public void setData(List<String> data) {
         profilesTable.removeAllRows();
-
         for (int i = 0; i < data.size(); ++i) {
             profilesTable.setWidget(i, 0, new CheckBox());
             profilesTable.setText(i, 1, data.get(i));
@@ -86,15 +76,15 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         HTMLTable.Cell cell = profilesTable.getCellForEvent(event);
 
         if (cell != null) {
-            // Suppress clicks if the user is actually selecting the
-            //  check box
-            //
             if (cell.getCellIndex() > 0) {
                 selectedRow = cell.getRowIndex();
             }
         }
-
         return selectedRow;
+    }
+
+    public HasClickHandlers getProfilesList() {
+        return profilesTable;
     }
 
     public List<Integer> getSelectedRows() {
@@ -106,7 +96,6 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
                 selectedRows.add(i);
             }
         }
-
         return selectedRows;
     }
 

@@ -2,17 +2,20 @@ package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.*;
-import com.lingoking.client.presenter.CreateProfilePresenter;
+import com.lingoking.client.presenter.EditProfilePresenter;
 
-public class CreateProfileView extends Composite implements CreateProfilePresenter.Display {
+/**
+ * Created by Michal on 1. 9. 2015.
+ */
+public class EditProfileView extends Composite implements EditProfilePresenter.Display {
     private final TextBox firstName;
     private final TextBox lastName;
     private final TextBox emailAddress;
     private final FlexTable detailsTable;
-    private final Button createButton;
+    private final Button editButton;
     private final Button cancelButton;
 
-    public CreateProfileView() {
+    public EditProfileView() {
         DecoratorPanel contentDetailsDecorator = new DecoratorPanel();
         contentDetailsDecorator.setWidth("18em");
         initWidget(contentDetailsDecorator);
@@ -32,9 +35,9 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         contentDetailsPanel.add(detailsTable);
 
         HorizontalPanel menuPanel = new HorizontalPanel();
-        createButton = new Button("Create");
+        editButton = new Button("Finish");
         cancelButton = new Button("Cancel");
-        menuPanel.add(createButton);
+        menuPanel.add(editButton);
         menuPanel.add(cancelButton);
         contentDetailsPanel.add(menuPanel);
         contentDetailsDecorator.add(contentDetailsPanel);
@@ -62,8 +65,8 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         return emailAddress;
     }
 
-    public HasClickHandlers getCreateButton() {
-        return createButton;
+    public HasClickHandlers getEditButton() {
+        return editButton;
     }
 
     public HasClickHandlers getCancelButton() {

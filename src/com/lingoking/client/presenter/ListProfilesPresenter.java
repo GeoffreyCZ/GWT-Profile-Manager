@@ -4,12 +4,15 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
 import com.lingoking.client.events.CreateProfileEvent;
+import com.lingoking.client.events.EditProfileEvent;
+import com.lingoking.client.events.ShowProfileEvent;
 import com.lingoking.shared.model.Profile;
 
 import java.util.ArrayList;
@@ -22,7 +25,7 @@ public class ListProfilesPresenter implements Presenter {
     public interface Display {
         HasClickHandlers getCreateButton();
         HasClickHandlers getDeleteButton();
-//        HasClickHandlers getList();
+        HasClickHandlers getProfilesList();
         void setData(List<String> data);
         int getClickedRow(ClickEvent event);
         List<Integer> getSelectedRows();
@@ -52,16 +55,18 @@ public class ListProfilesPresenter implements Presenter {
             }
         });
 
-//        display.getList().addClickHandler(new ClickHandler() {
-//            public void onClick(ClickEvent event) {
-//                int selectedRow = display.getClickedRow(event);
-//
-//                if (selectedRow >= 0) {
-//                    String id = profile.get(selectedRow).getId();
-//                    eventBus.fireEvent(new EditProfileEvent(id));
-//                }
-//            }
-//        });
+        display.getProfilesList().addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                int selectedRow = display.getClickedRow(event);
+
+                if (selectedRow >= 0) {
+                    String profileId = profile.get(selectedRow).getId();
+                    getProfileId(profileId);
+                    eventBus.fireEvent(new ShowProfileEvent());
+                    History.newItem("profile=" + profile.get(selectedRow).getId());
+                }
+            }
+        });
     }
 
     public void go(final HasWidgets container) {
@@ -72,11 +77,6 @@ public class ListProfilesPresenter implements Presenter {
     }
 
     public void sortProfileList() {
-
-        // Yes, we could use a more optimized method of sorting, but the
-        //  point is to create a test case that helps illustrate the higher
-        //  level concepts used when creating MVP-based applications.
-        //
         for (int i = 0; i < profile.size(); ++i) {
             for (int j = 0; j < profile.size() - 1; ++j) {
                 if (profile.get(j).getWholeName().compareToIgnoreCase(profile.get(j + 1).getWholeName()) >= 0) {
@@ -88,12 +88,12 @@ public class ListProfilesPresenter implements Presenter {
         }
     }
 
-    public void setProfile(List<Profile> profile) {
-        this.profile = profile;
+    public String getProfileId (String profileId) {
+        return profileId;
     }
 
-    public Profile getProfileDetail(int index) {
-        return profile.get(index);
+    public void setProfile(List<Profile> profile) {
+        this.profile = profile;
     }
 
     private void fetchProfileList() {
@@ -106,12 +106,11 @@ public class ListProfilesPresenter implements Presenter {
                 for (int i = 0; i < result.size(); ++i) {
                     data.add(profile.get(i).getFirstName() + " " + profile.get(i).getLastName());
                 }
-
                 display.setData(data);
             }
 
             public void onFailure(Throwable caught) {
-                Window.alert("Error fetching profile details");
+                Window.alert("Error fetching profiles");
             }
         });
     }
@@ -137,7 +136,7 @@ public class ListProfilesPresenter implements Presenter {
             }
 
             public void onFailure(Throwable caught) {
-                Window.alert("Error deleting selected contacts");
+                Window.alert("Error deleting selected profiles");
             }
         });
     }
