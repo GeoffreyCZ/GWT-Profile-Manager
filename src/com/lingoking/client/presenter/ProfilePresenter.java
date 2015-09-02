@@ -4,6 +4,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasValue;
@@ -36,20 +37,24 @@ public class ProfilePresenter implements Presenter {
     private final ProfilesServiceAsync rpcService;
     private final HandlerManager eventBus;
     private final Display display;
+    private final String profileId;
 
-    public ProfilePresenter(ProfilesServiceAsync rpcService, HandlerManager eventBus, Display display) {
+    public ProfilePresenter(ProfilesServiceAsync rpcService, HandlerManager eventBus, Display display, String profileId) {
         this.rpcService = rpcService;
         this.eventBus = eventBus;
         this.profile = new Profile();
         this.display = display;
+        this.profileId = profileId;
         bind();
     }
 
     public void bind() {
         this.display.getEditButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
+                History.newItem("profile=" + profileId);
                 eventBus.fireEvent(new EditProfileEvent());
             }
+
         });
 
         this.display.getBackButton().addClickHandler(new ClickHandler() {
@@ -61,7 +66,7 @@ public class ProfilePresenter implements Presenter {
         this.display.getDeleteButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 ArrayList<String> al = new ArrayList<>();
-                al.add(profile.getId());
+                al.add(profileId);
                 deleteSelectedProfile(al);
             }
         });
@@ -70,11 +75,7 @@ public class ProfilePresenter implements Presenter {
     public void go(final HasWidgets container) {
         container.clear();
         container.add(display.asWidget());
-        String value = com.google.gwt.user.client.Window.Location.getParameter("profile");
-        ArrayList<String> al = new ArrayList<>();
-        al.add(value);
-        Window.alert("fetch : " + al.toString());
-        fetchProfile(value);
+        fetchProfile(profileId);
     }
 
     private void fetchProfile(String id) {

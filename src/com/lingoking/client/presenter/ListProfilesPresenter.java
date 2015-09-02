@@ -104,7 +104,7 @@ public class ListProfilesPresenter implements Presenter {
                 List<String> data = new ArrayList<String>();
 
                 for (int i = 0; i < result.size(); ++i) {
-                    data.add(profile.get(i).getFirstName() + " " + profile.get(i).getLastName());
+                    data.add(profile.get(i).getFirstName() + " " + profile.get(i).getLastName() + " " + profile.get(i).getEmail());
                 }
                 display.setData(data);
             }

@@ -1,5 +1,7 @@
 package com.lingoking.shared.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.io.Serializable;
 
 public class Profile implements Serializable {
@@ -8,7 +10,12 @@ public class Profile implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
+
+
     private String password;
+    private String passwordAgain;
+
+    @NotEmpty
     private String phoneNumber;
     private Address address;
     private String avatar;
@@ -23,22 +30,25 @@ public class Profile implements Serializable {
         this.email = email;
     }
 
-    public void setProfileName (String firstName, String lastName) {
-        Profile profile = new Profile();
-        profile.setFirstName(firstName);
-        profile.setLastName(lastName);
+    public String getPasswordAgain() {
+        return passwordAgain;
     }
 
-//    public Profile(String id, String firstName, String lastName, String email, String password, String phoneNumber, Address address, String avatar) {
-//        this.id = id;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.password = password;
-//        this.phoneNumber = phoneNumber;
-//        this.address = address;
-//        this.avatar = avatar;
-//    }
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
+    }
+
+    public Profile(String id, String firstName, String lastName, String email, String password, String passwordAgain, String phoneNumber, Address address, String avatar) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.passwordAgain = passwordAgain;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.avatar = avatar;
+    }
 
     public String getId() {
         return id;

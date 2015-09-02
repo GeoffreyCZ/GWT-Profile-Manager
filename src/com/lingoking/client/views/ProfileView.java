@@ -9,6 +9,7 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
     private final Button editButton;
     private final Button deleteButton;
     private final Button backButton;
+    private final Image avatarImage;
     private FlexTable profileTable;
     private final FlexTable contentTable;
 
@@ -34,6 +35,7 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
         hPanel.add(deleteButton);
         backButton = new Button("Back to list");
         hPanel.add(backButton);
+        avatarImage = new Image();
         contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListMenu");
         contentTable.setWidget(0, 0, hPanel);
 
@@ -49,7 +51,15 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
 
     public void setData(Profile profile) {
         profileTable.removeAllRows();
-            profileTable.setText(1, 1, profile.getFirstName());
+        profileTable.setText(1, 1, profile.getFirstName());
+        profileTable.setText(2, 1, profile.getLastName());
+        profileTable.setText(3, 1, profile.getEmail());
+        profileTable.setText(4, 1, profile.getPhoneNumber());
+        profileTable.setText(5, 1, profile.getAddress().getStreet());
+        profileTable.setText(5, 2, profile.getAddress().getStreetNumber());
+        profileTable.setText(6, 1, profile.getAddress().getCity());
+        profileTable.setText(6, 2, profile.getAddress().getPostcode());
+//        profileTable.setText(0, 1, avatarImage.setUrl((profile.getAvatar())));
     }
 
     public HasClickHandlers getBackButton() {

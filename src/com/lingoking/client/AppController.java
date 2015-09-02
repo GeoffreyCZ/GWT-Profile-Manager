@@ -4,6 +4,7 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.lingoking.client.events.*;
 import com.lingoking.client.presenter.*;
@@ -82,8 +83,10 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     }
 
     private void doEditProfile() {
-        History.newItem("edit", false);
-        Presenter presenter = new EditProfilePresenter(rpcService, eventBus, new EditProfileView());
+        String[] tokens = History.getToken().split("=");
+        final String token2 = tokens.length > 1 ? tokens[1] : "";
+        History.newItem("edit");
+        Presenter presenter = new EditProfilePresenter(rpcService, eventBus, new EditProfileView(), token2);
         presenter.go(container);
     }
 
@@ -113,7 +116,9 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     }
 
     public void onValueChange(ValueChangeEvent<String> event) {
-        String token = event.getValue();
+        String[] tokens = History.getToken().split("=");
+        final String token = tokens[0];
+        final String token2 = tokens.length > 1 ? tokens[1] : "";
 
         if (token != null) {
             Presenter presenter = null;
@@ -126,11 +131,11 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
             if (token.equals("create")) {
                 presenter = new CreateProfilePresenter(rpcService, eventBus, new CreateProfileView());
             }
-            else if (token.equals("profile")) {
-                presenter = new ProfilePresenter(rpcService, eventBus, new ProfileView());
+            else if (token.equals("profile") && token2.length() > 0) {
+                presenter = new ProfilePresenter(rpcService, eventBus, new ProfileView(), token2);
             }
-            else if (token.equals("edit")) {
-                presenter = new EditProfilePresenter(rpcService, eventBus, new EditProfileView());
+            else if (token.equals("edit") && token2.length() > 0) {
+                presenter = new EditProfilePresenter(rpcService, eventBus, new EditProfileView(), token2);
             }
             if (presenter != null) {
                 presenter.go(container);

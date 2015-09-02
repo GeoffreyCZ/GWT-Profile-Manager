@@ -2,6 +2,11 @@
 <module rename-to="lingoking">
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <inherits name="org.hibernate.validator.HibernateValidator" />
+    <replace-with
+            class="com.lingoking.client.presenter.ValidatorFactory">
+        <when-type-is class="javax.validation.ValidatorFactory" />
+    </replace-with>
     <entry-point class='com.lingoking.client.ProfileManagement'/>
     <source path="client" />
     <source path="shared" />

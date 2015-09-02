@@ -19,8 +19,7 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return profile;
     }
 
-    public Profile editProfile(String id) {
-        Profile profile = new Profile();
+    public Profile editProfile(String id, Profile profile) {
         profile = ConnectionConfiguration.editProfileInDB(id, profile);
         return profile;
     }
@@ -39,7 +38,6 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
     public ArrayList<Profile> deleteProfiles(ArrayList<String> ids) {
         for (int i = 0; i < ids.size(); ++i) {
             deleteProfiles(ids.get(i));
-            System.out.println("jsem tu " + ids);
         }
         return getListOfProfiles();
     }

@@ -19,22 +19,26 @@ public class EditProfilePresenter implements Presenter {
     public interface Display {
         HasClickHandlers getEditButton();
         HasClickHandlers getCancelButton();
-        HasValue<String> getFirstName();
-        HasValue<String> getLastName();
-        HasValue<String> getEmail();
+//        HasValue<String> getFirstName();
+//        HasValue<String> getLastName();
+//        HasValue<String> getEmail();
         Widget asWidget();
+        void setData(Profile profile);
+        Profile getData();
     }
 
     private Profile profile;
     private final ProfilesServiceAsync rpcService;
     private final HandlerManager eventBus;
     private final Display display;
+    private final String profileId;
 
-    public EditProfilePresenter(ProfilesServiceAsync rpcService, HandlerManager eventBus, Display display) {
+    public EditProfilePresenter(ProfilesServiceAsync rpcService, HandlerManager eventBus, Display display, String profileId) {
         this.rpcService = rpcService;
         this.eventBus = eventBus;
         this.profile = new Profile();
         this.display = display;
+        this.profileId = profileId;
         bind();
     }
 
@@ -55,17 +59,31 @@ public class EditProfilePresenter implements Presenter {
     public void go(final HasWidgets container) {
         container.clear();
         container.add(display.asWidget());
+        fetchProfile(profileId);
+    }
+
+    private void fetchProfile(String id) {
+        rpcService.fetchProfile(id, new AsyncCallback<Profile>() {
+            public void onSuccess(Profile result) {
+                Profile profile;
+                profile = result;
+                display.setData(profile);
+            }
+
+            public void onFailure(Throwable caught) {
+                Window.alert("Error fetching profiles");
+            }
+        });
     }
 
     private void doEdit() {
-        profile.setFirstName(display.getFirstName().getValue());
-        profile.setLastName(display.getLastName().getValue());
-        profile.setEmail(display.getEmail().getValue());
+        profile = display.getData();
 
-        rpcService.createProfile(profile, new AsyncCallback<Profile>() {
+        rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
             public void onSuccess(Profile result) {
                 eventBus.fireEvent(new ProfileCreatedEvent(result));
             }
+
             public void onFailure(Throwable caught) {
                 Window.alert("Error editing the profile.");
             }

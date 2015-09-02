@@ -33,7 +33,15 @@ public class ConnectionConfiguration {
             String sql = "INSERT INTO " + DB_NAME + "." + TABLE_NAME + " VALUES (null , '" +
                     profile.getFirstName() + "', '" +
                     profile.getLastName() + "', '" +
-                    profile.getEmail() + "');";
+                    profile.getEmail() + "', '" +
+                    profile.getPassword() + "', '" +
+                    profile.getPhoneNumber() + "', '" +
+                    profile.getAddress().getStreet() + "', '" +
+                    profile.getAddress().getStreetNumber() + "', '" +
+                    profile.getAddress().getCity() + "', '" +
+                    profile.getAddress().getPostcode() + "', '" +
+                    profile.getAvatar() + "');";
+            System.out.println(sql);
             statement.executeUpdate(sql);
         } catch (SQLException se) {
             se.printStackTrace();
@@ -98,10 +106,11 @@ public class ConnectionConfiguration {
         try {
             statement = connection.createStatement();
             String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " +
-                    "firstName = " + newProfileData.getFirstName() +
-                    "lastName = " + newProfileData.getLastName() +
-                    "email = " + newProfileData.getEmail() + ";";
+                    "firstName = '" + newProfileData.getFirstName() +
+                    "', lastName = '" + newProfileData.getLastName() +
+                    "', email = '" + newProfileData.getEmail() + "' WHERE id = " + id + ";";
             statement.executeUpdate(sql);
+            System.out.println(sql);
         } catch (SQLException se) {
             se.printStackTrace();
         } finally {
@@ -127,7 +136,7 @@ public class ConnectionConfiguration {
                 profile.setFirstName(rs.getString("firstName"));
                 profile.setLastName(rs.getString("lastName"));
                 profile.setEmail(rs.getString("email"));
-                System.out.println(rs.getString("firstName") + " " + rs.getString("lastName") + " " + rs.getString("email"));
+                System.out.println("FN: " + rs.getString("firstName") + " " + rs.getString("lastName") + " " + rs.getString("email"));
             } else {
                 System.out.println("Error fetching profile from DB");
             }

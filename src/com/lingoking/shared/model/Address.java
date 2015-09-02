@@ -9,7 +9,6 @@ public class Address implements Serializable{
     private String postcode;
 
     public Address(){
-        this("Kamenicka", "263", "Decin", "40501");
     }
 
     public Address(String street, String streetNumber, String city, String postcode) {
