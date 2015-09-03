@@ -1,5 +1,6 @@
 package com.lingoking.server;
 
+import com.lingoking.shared.model.Address;
 import com.lingoking.shared.model.Profile;
 
 import java.sql.*;
@@ -108,7 +109,13 @@ public class ConnectionConfiguration {
             String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " +
                     "firstName = '" + newProfileData.getFirstName() +
                     "', lastName = '" + newProfileData.getLastName() +
-                    "', email = '" + newProfileData.getEmail() + "' WHERE id = " + id + ";";
+                    "', email = '" + newProfileData.getEmail() +
+                    "', password = '" + newProfileData.getPassword() +
+                    "', phoneNumber = '" + newProfileData.getPhoneNumber() +
+                    "', street = '" + newProfileData.getAddress().getStreet() +
+                    "', streetNumber = '" + newProfileData.getAddress().getStreetNumber() +
+                    "', city = '" + newProfileData.getAddress().getCity() +
+                    "', postcode = '" + newProfileData.getAddress().getPostcode() +"' WHERE id = " + id + ";";
             statement.executeUpdate(sql);
             System.out.println(sql);
         } catch (SQLException se) {
@@ -128,15 +135,21 @@ public class ConnectionConfiguration {
         Statement statement;
         connection = getConnection();
         Profile profile = new Profile();
+        Address address = new Address();
         try {
             statement = connection.createStatement();
-            String sql = "SELECT firstName, lastName, email FROM " + DB_NAME + "." + TABLE_NAME + " WHERE id = " + id + ";";
+            String sql = "SELECT firstName, lastName, email, phoneNumber, street, streetNumber, city, postcode FROM " + DB_NAME + "." + TABLE_NAME + " WHERE id = " + id + ";";
             ResultSet rs = statement.executeQuery(sql);
             if (rs.next()) {
                 profile.setFirstName(rs.getString("firstName"));
                 profile.setLastName(rs.getString("lastName"));
                 profile.setEmail(rs.getString("email"));
-                System.out.println("FN: " + rs.getString("firstName") + " " + rs.getString("lastName") + " " + rs.getString("email"));
+                profile.setPhoneNumber(rs.getString("phoneNumber"));
+                address.setStreet(rs.getString("street"));
+                address.setStreetNumber(rs.getString("streetNumber"));
+                address.setCity(rs.getString("city"));
+                address.setPostcode(rs.getString("postcode"));
+                profile.setAddress(address);
             } else {
                 System.out.println("Error fetching profile from DB");
             }

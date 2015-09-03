@@ -29,7 +29,7 @@ public class ProfilePresenter implements Presenter {
         HasClickHandlers getEditButton();
         HasClickHandlers getBackButton();
         HasClickHandlers getDeleteButton();
-        void setData(Profile data);
+        void setData(Profile profile);
         Widget asWidget();
     }
 

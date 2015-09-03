@@ -101,14 +101,13 @@ public class ListProfilesPresenter implements Presenter {
             public void onSuccess(ArrayList<Profile> result) {
                 profile = result;
                 sortProfileList();
-                List<String> data = new ArrayList<String>();
+                List<String> data = new ArrayList<>();
 
                 for (int i = 0; i < result.size(); ++i) {
                     data.add(profile.get(i).getFirstName() + " " + profile.get(i).getLastName() + " " + profile.get(i).getEmail());
                 }
                 display.setData(data);
             }
-
             public void onFailure(Throwable caught) {
                 Window.alert("Error fetching profiles");
             }
@@ -117,27 +116,29 @@ public class ListProfilesPresenter implements Presenter {
 
     private void deleteSelectedProfiles() {
         List<Integer> selectedRows = display.getSelectedRows();
-        ArrayList<String> ids = new ArrayList<String>();
+        if (selectedRows.size() > 0) {
+            ArrayList<String> ids = new ArrayList<>();
 
-        for (int i = 0; i < selectedRows.size(); ++i) {
-            ids.add(profile.get(selectedRows.get(i)).getId());
-        }
+            for (int i = 0; i < selectedRows.size(); ++i) {
+                ids.add(profile.get(selectedRows.get(i)).getId());
+            }
 
-        rpcService.deleteProfiles(ids, new AsyncCallback<ArrayList<Profile>>() {
-            public void onSuccess(ArrayList<Profile> result) {
-                profile = result;
-                sortProfileList();
-                List<String> data = new ArrayList<String>();
+            rpcService.deleteProfiles(ids, new AsyncCallback<ArrayList<Profile>>() {
+                public void onSuccess(ArrayList<Profile> result) {
+                    profile = result;
+                    sortProfileList();
+                    List<String> data = new ArrayList<>();
 
-                for (int i = 0; i < result.size(); ++i) {
-                    data.add(profile.get(i).getWholeName());
+                    for (int i = 0; i < result.size(); ++i) {
+                        data.add(profile.get(i).getWholeName());
+                    }
+                    fetchProfileList();
                 }
-                display.setData(data);
-            }
 
-            public void onFailure(Throwable caught) {
-                Window.alert("Error deleting selected profiles");
-            }
-        });
+                public void onFailure(Throwable caught) {
+                    Window.alert("Error deleting selected profiles");
+                }
+            });
+        }
     }
 }
