@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UploadServlet extends HttpServlet {
 
-    static final String INPUT_FILE_NAME = "image.jpg";
+//    static final String INPUT_FILE_NAME = "image.jpg";
     public static final String TEMP_DIRECTORY = "tmp/";
 
     private String filePath;
@@ -36,12 +36,14 @@ public class UploadServlet extends HttpServlet {
             throws ServletException, IOException {
         // Check that we have a file upload request
         boolean isMultipart;
-        System.out.println("jsem tuuuuuuu");
 
         File file;
 
         isMultipart = ServletFileUpload.isMultipartContent(request);
+        String file_name = request.getParameter("profile_name");
         response.setContentType("text/html");
+        System.out.println("Servlet");
+
         PrintWriter out = response.getWriter( );
         if( !isMultipart ){
             System.out.println("No file uploaded");
@@ -60,13 +62,12 @@ public class UploadServlet extends HttpServlet {
 
         try {
             // Parse the request to get file items.
-            System.out.println("try");
             List fileItems = upload.parseRequest(request);
             for (Iterator i = fileItems.iterator(); i.hasNext();) {
                 FileItem fi = (FileItem)i.next();
                 // Checks if there is uploaded file or form field in input
                 if (!fi.isFormField()) {
-                    file = new File(filePath + INPUT_FILE_NAME);
+                    file = new File(filePath + file_name);
                     fi.write(file);
                     System.out.println("Your file has been uploaded.");
                 }

@@ -7,18 +7,10 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import com.google.gwt.validation.client.impl.Validation;
 import com.lingoking.client.ProfilesServiceAsync;
 import com.lingoking.client.events.CreateProfileCancelledEvent;
 import com.lingoking.client.events.ProfileCreatedEvent;
 import com.lingoking.shared.model.Profile;
-
-import com.google.gwt.validation.client.GwtValidation;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-import java.util.Set;
-
 
 public class CreateProfilePresenter implements Presenter {
 
@@ -43,18 +35,14 @@ public class CreateProfilePresenter implements Presenter {
         bind();
     }
 
-//    Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-//    Set<ConstraintViolation<Profile>> violations = validator.validate(profile);
-
     public void bind() {
         this.display.getCreateButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-//                validator.validate(profile);
-//                if (!violations.isEmpty()) {
-//                    Window.alert("Probléééém");
-//                } else {
-                    display.getFormPanel().submit();
-//                }
+                String action = "UploadServlet?profile_name=" + display.getData().getAvatar();
+                display.getFormPanel().setAction(action);
+                Window.alert("bind: " + action);
+                display.getFormPanel().submit();
+
             }
         });
 

@@ -23,7 +23,7 @@
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
-        <param-value>images/</param-value>
+        <param-value>/images/</param-value>
     </context-param>
    <welcome-file-list>
         <welcome-file>lingoking.html</welcome-file>

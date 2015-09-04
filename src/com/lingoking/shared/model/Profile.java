@@ -15,7 +15,6 @@ public class Profile implements Serializable {
     private String password;
     private String passwordAgain;
 
-    @NotEmpty
     private String phoneNumber;
     private Address address;
     private String avatar;

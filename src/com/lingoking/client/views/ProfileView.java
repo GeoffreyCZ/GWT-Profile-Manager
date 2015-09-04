@@ -50,6 +50,7 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
     }
 
     public void setData(Profile profile) {
+        avatarImage.setUrl("/images/" + profile.getAvatar());
         profileTable.removeAllRows();
         profileTable.setText(1, 1, profile.getFirstName());
         profileTable.setText(2, 1, profile.getLastName());
@@ -59,7 +60,7 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
         profileTable.setText(5, 2, profile.getAddress().getStreetNumber());
         profileTable.setText(6, 1, profile.getAddress().getCity());
         profileTable.setText(6, 2, profile.getAddress().getPostcode());
-//        profileTable.setText(0, 1, avatarImage.setUrl((profile.getAvatar())));
+        profileTable.setWidget(7, 1, avatarImage);
     }
 
     public HasClickHandlers getBackButton() {
