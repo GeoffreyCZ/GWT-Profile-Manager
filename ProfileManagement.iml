@@ -37,5 +37,6 @@
     <orderEntry type="library" name="slf4j-log4j12-1.7.12" level="project" />
     <orderEntry type="library" name="validation-api-1.1.0.Final" level="project" />
     <orderEntry type="library" name="hibernate-validator-4.1.0.Final" level="project" />
+    <orderEntry type="library" name="gwt-image-loader-1.1.4" level="project" />
   </component>
 </module>

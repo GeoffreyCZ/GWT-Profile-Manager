@@ -3,6 +3,7 @@
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
     <inherits name="org.hibernate.validator.HibernateValidator" />
+    <inherits name="com.reveregroup.gwt.imagepreloader.ImagePreloader" />
     <replace-with
             class="com.lingoking.client.presenter.ValidatorFactory">
         <when-type-is class="javax.validation.ValidatorFactory" />

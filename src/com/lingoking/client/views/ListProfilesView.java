@@ -8,6 +8,9 @@ import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.view.client.ListDataProvider;
 import com.lingoking.client.presenter.ListProfilesPresenter;
+import com.lingoking.server.UploadServlet;
+import com.lingoking.shared.model.Profile;
+import com.reveregroup.gwt.imagepreloader.FitImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +20,14 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
     private final Button deleteButton;
     private FlexTable profilesTable;
     private final FlexTable contentTable;
+    FitImage avatarImage = new FitImage();
 
     public ListProfilesView() {
         DecoratorPanel contentTableDecorator = new DecoratorPanel();
         initWidget(contentTableDecorator);
         contentTableDecorator.setWidth("100%");
         contentTableDecorator.setWidth("18em");
+
 
         contentTable = new FlexTable();
         contentTable.setWidth("100%");
@@ -59,11 +64,21 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         return deleteButton;
     }
 
-    public void setData(List<String> data) {
+    public void setData(List<Profile> data) {
         profilesTable.removeAllRows();
         for (int i = 0; i < data.size(); ++i) {
+            avatarImage = new FitImage();
+            if (data.get(i).getAvatar() == null) {
+                avatarImage.setUrl("lib/avatar.jpg");
+            } else {
+                avatarImage.setUrl(UploadServlet.PATH_TO_FILE + data.get(i).getAvatar());
+            }
+            avatarImage.setMaxSize(90, 90);
             profilesTable.setWidget(i, 0, new CheckBox());
-            profilesTable.setText(i, 1, data.get(i));
+            profilesTable.setWidget(i, 1, avatarImage);
+            profilesTable.setText(i, 2, data.get(i).getFirstName());
+            profilesTable.setText(i, 3, data.get(i).getLastName());
+            profilesTable.setText(i, 4, data.get(i).getEmail());
         }
     }
 

@@ -3,13 +3,15 @@ package com.lingoking.client.views;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.ProfilePresenter;
+import com.lingoking.server.UploadServlet;
 import com.lingoking.shared.model.Profile;
+import com.reveregroup.gwt.imagepreloader.FitImage;
 
 public class ProfileView extends Composite implements ProfilePresenter.Display {
     private final Button editButton;
     private final Button deleteButton;
     private final Button backButton;
-    private final Image avatarImage;
+    private final FitImage avatarImage;
     private FlexTable profileTable;
     private final FlexTable contentTable;
 
@@ -35,7 +37,7 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
         hPanel.add(deleteButton);
         backButton = new Button("Back to list");
         hPanel.add(backButton);
-        avatarImage = new Image();
+        avatarImage = new FitImage();
         contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListMenu");
         contentTable.setWidget(0, 0, hPanel);
 
@@ -50,6 +52,11 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
     }
 
     public void setData(Profile profile) {
+        avatarImage.setUrl(UploadServlet.PATH_TO_FILE + profile.getAvatar());
+        avatarImage.setMaxSize(90, 90);
+        if (profile.getAvatar() == null) {
+            avatarImage.setUrl("lib/avatar.jpg");
+        }
         profileTable.removeAllRows();
         profileTable.setText(1, 1, profile.getFirstName());
         profileTable.setText(2, 1, profile.getLastName());
@@ -59,7 +66,7 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
         profileTable.setText(5, 2, profile.getAddress().getStreetNumber());
         profileTable.setText(6, 1, profile.getAddress().getCity());
         profileTable.setText(6, 2, profile.getAddress().getPostcode());
-//        profileTable.setText(0, 1, avatarImage.setUrl((profile.getAvatar())));
+        profileTable.setWidget(7, 1, avatarImage);
     }
 
     public HasClickHandlers getBackButton() {

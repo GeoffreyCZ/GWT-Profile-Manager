@@ -1,12 +1,13 @@
 package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.CreateProfilePresenter;
 import com.lingoking.shared.model.Address;
 import com.lingoking.shared.model.Profile;
+
+import java.util.Random;
 
 public class CreateProfileView extends Composite implements CreateProfilePresenter.Display {
     private final TextBox firstName;
@@ -26,6 +27,7 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
     private Label emailErrorLabel;
     private Label passwordErrorLabel;
     private Label telephoneErrorLabel;
+    private String randomString;
 
     public CreateProfileView() {
 
@@ -35,7 +37,14 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
         formPanel.setMethod(FormPanel.METHOD_POST);
         formPanel.setWidth("100%");
-        formPanel.setAction("UploadServlet");
+
+        StringBuilder stringBuilder = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0 ; i < 5; i++) {
+            stringBuilder.append('a' + random.nextInt(26));
+        }
+        randomString = stringBuilder.toString();
 
         firstName = new TextBox();
         lastName = new TextBox();
@@ -91,15 +100,18 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         formUploadPanel.add(createButton);
         formUploadPanel.add(cancelButton);
 
-        uploadAvatarWidget.setName(firstName.getText() + "_" + lastName.getText());
         formPanel.setWidget(formUploadPanel);
         initWidget(formPanel);
+
     }
 
     public Profile getData() {
+        String avatarName = firstName.getText() + "_" + lastName.getText() + "_" + randomString + ".jpg";
+        Window.alert("Avatar Name: " + avatarName);
         Address address = new Address(street.getText(),streetNumber.getText(), city.getText(), postcode.getText());
+        uploadAvatarWidget.setName(firstName.getText() + "_" + lastName.getText() + ".jpg");
         Profile profile = new Profile(null, firstName.getText(), lastName.getText(), emailAddress.getText(),
-                password.getText(), passwordAgain.getText(), phoneNumber.getText(), address, uploadAvatarWidget.getFilename());
+                password.getText(), passwordAgain.getText(), phoneNumber.getText(), address, avatarName);
         return profile;
     }
 

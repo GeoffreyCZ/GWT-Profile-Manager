@@ -15,7 +15,6 @@ public class Profile implements Serializable {
     private String password;
     private String passwordAgain;
 
-    @NotEmpty
     private String phoneNumber;
     private Address address;
     private String avatar;
@@ -23,11 +22,12 @@ public class Profile implements Serializable {
     public Profile() {
     }
 
-    public Profile(String id, String firstName, String lastName, String email) {
+    public Profile(String id, String firstName, String lastName, String email, String avatar) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.avatar = avatar;
     }
 
     public String getPasswordAgain() {

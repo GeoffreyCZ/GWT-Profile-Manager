@@ -26,7 +26,7 @@ public class ListProfilesPresenter implements Presenter {
         HasClickHandlers getCreateButton();
         HasClickHandlers getDeleteButton();
         HasClickHandlers getProfilesList();
-        void setData(List<String> data);
+        void setData(List<Profile> data);
         int getClickedRow(ClickEvent event);
         List<Integer> getSelectedRows();
         Widget asWidget();
@@ -101,10 +101,10 @@ public class ListProfilesPresenter implements Presenter {
             public void onSuccess(ArrayList<Profile> result) {
                 profile = result;
                 sortProfileList();
-                List<String> data = new ArrayList<>();
+                List<Profile> data = new ArrayList<>();
 
                 for (int i = 0; i < result.size(); ++i) {
-                    data.add(profile.get(i).getFirstName() + " " + profile.get(i).getLastName() + " " + profile.get(i).getEmail());
+                    data.add(new Profile(profile.get(i).getId(), profile.get(i).getFirstName(), profile.get(i).getLastName(), profile.get(i).getEmail(), profile.get(i).getAvatar()));
                 }
                 display.setData(data);
             }
