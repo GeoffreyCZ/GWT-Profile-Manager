@@ -6,6 +6,9 @@ import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.CreateProfilePresenter;
 import com.lingoking.shared.model.Address;
 import com.lingoking.shared.model.Profile;
+import com.pietschy.gwt.pectin.client.form.binding.FormBinder;
+import com.pietschy.gwt.pectin.client.form.validation.binding.ValidationBinder;
+import com.pietschy.gwt.pectin.client.form.validation.component.ValidationDisplayPanel;
 
 import java.util.Random;
 
@@ -24,12 +27,17 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
     private final Button createButton;
     private final Button cancelButton;
     private final FormPanel formPanel;
-    private Label emailErrorLabel;
-    private Label passwordErrorLabel;
-    private Label telephoneErrorLabel;
     private String randomString;
 
+    private CreateProfileModel model;
+
     public CreateProfileView() {
+        this(new CreateProfileModel());
+    }
+
+    public CreateProfileView(CreateProfileModel model) {
+
+        this.model = model;
 
         VerticalPanel formUploadPanel = new VerticalPanel();
 
@@ -37,6 +45,9 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
         formPanel.setMethod(FormPanel.METHOD_POST);
         formPanel.setWidth("100%");
+
+
+        ValidationDisplayPanel validationMessages = new ValidationDisplayPanel();
 
         StringBuilder stringBuilder = new StringBuilder();
         Random random = new Random();
@@ -60,33 +71,18 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         createButton = new Button("Create");
         cancelButton = new Button("Cancel");
 
-        emailErrorLabel = new Label();
-        emailErrorLabel.setText("Enter valid e-mail address");
-        emailErrorLabel.setVisible(false);
-
-        passwordErrorLabel = new Label();
-        passwordErrorLabel.setText("Passwords need to match");
-        passwordErrorLabel.setVisible(false);
-
-        telephoneErrorLabel = new Label();
-        telephoneErrorLabel.setText("Telephone number has to be entered");
-        telephoneErrorLabel.setVisible(false);
-
         formUploadPanel.add(new Label("First name"));
         formUploadPanel.add(firstName);
         formUploadPanel.add(new Label("Last name"));
         formUploadPanel.add(lastName);
-        formUploadPanel.add(new Label("Email Address *"));
+        formUploadPanel.add(new Label("Email Address"));
         formUploadPanel.add(emailAddress);
-        formUploadPanel.add(emailErrorLabel);
-        formUploadPanel.add(new Label("Password *"));
+        formUploadPanel.add(new Label("Password"));
         formUploadPanel.add(password);
-        formUploadPanel.add(new Label("Password confirmation *"));
+        formUploadPanel.add(new Label("Password confirmation"));
         formUploadPanel.add(passwordAgain);
-        formUploadPanel.add(passwordErrorLabel);
-        formUploadPanel.add(new Label("Telephone number *"));
+        formUploadPanel.add(new Label("Telephone number"));
         formUploadPanel.add(phoneNumber);
-        formUploadPanel.add(telephoneErrorLabel);
         formUploadPanel.add(new Label("Street"));
         formUploadPanel.add(street);
         formUploadPanel.add(new Label("Street Number"));
@@ -97,21 +93,54 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         formUploadPanel.add(postcode);
         formUploadPanel.add(new Label("Profile picture"));
         formUploadPanel.add(uploadAvatarWidget);
+        formUploadPanel.add(validationMessages);
         formUploadPanel.add(createButton);
         formUploadPanel.add(cancelButton);
 
         formPanel.setWidget(formUploadPanel);
+
         initWidget(formPanel);
+
+        FormBinder binder = new FormBinder();
+        ValidationBinder validation = new ValidationBinder();
+
+        binder.bind(model.emailAddress).to(emailAddress);
+        binder.bind(model.password).to(password);
+        binder.bind(model.passwordAgain).to(passwordAgain);
+        binder.bind(model.phoneNumber).to(phoneNumber);
+
+        validation.bindValidationOf(model).to(validationMessages);
 
     }
 
-    public Profile getData() {
-        String avatarName = firstName.getText() + "_" + lastName.getText() + "_" + randomString + ".jpg";
+    public void setProfile(Profile profile)
+    {
+        model.setProfile(profile);
+    }
+
+    public void commit()
+    {
+        model.commit();
+    }
+
+    public boolean validate()
+    {
+        return model.validate();
+    }
+
+    public Profile getProfile() {
+        String avatarName;
+        Window.alert("Filename: " + uploadAvatarWidget.getFilename());
+        if (uploadAvatarWidget.getFilename() != "") {
+            avatarName = firstName.getText() + "_" + lastName.getText() + "_" + randomString + ".jpg";
+        } else {
+            avatarName = "";
+        }
         Window.alert("Avatar Name: " + avatarName);
         Address address = new Address(street.getText(),streetNumber.getText(), city.getText(), postcode.getText());
         uploadAvatarWidget.setName(firstName.getText() + "_" + lastName.getText() + ".jpg");
         Profile profile = new Profile(null, firstName.getText(), lastName.getText(), emailAddress.getText(),
-                password.getText(), passwordAgain.getText(), phoneNumber.getText(), address, avatarName);
+                password.getText(), phoneNumber.getText(), address, avatarName);
         return profile;
     }
 

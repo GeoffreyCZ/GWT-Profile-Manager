@@ -6,7 +6,6 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
@@ -19,12 +18,9 @@ public class EditProfilePresenter implements Presenter {
     public interface Display {
         HasClickHandlers getEditButton();
         HasClickHandlers getCancelButton();
-//        HasValue<String> getFirstName();
-//        HasValue<String> getLastName();
-//        HasValue<String> getEmail();
         Widget asWidget();
-        void setData(Profile profile);
-        Profile getData();
+        void setProfile(Profile profile);
+        Profile getProfile();
     }
 
     private Profile profile;
@@ -67,7 +63,7 @@ public class EditProfilePresenter implements Presenter {
             public void onSuccess(Profile result) {
                 Profile profile;
                 profile = result;
-                display.setData(profile);
+                display.setProfile(profile);
             }
 
             public void onFailure(Throwable caught) {
@@ -77,7 +73,7 @@ public class EditProfilePresenter implements Presenter {
     }
 
     private void doEdit() {
-        profile = display.getData();
+        profile = display.getProfile();
 
         rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
             public void onSuccess(Profile result) {
@@ -89,6 +85,5 @@ public class EditProfilePresenter implements Presenter {
             }
         });
     }
-
-
 }
+

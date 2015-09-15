@@ -4,6 +4,7 @@
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
     <inherits name="org.hibernate.validator.HibernateValidator" />
     <inherits name="com.reveregroup.gwt.imagepreloader.ImagePreloader" />
+    <inherits name="com.pietschy.gwt.pectin.Pectin"/>
     <replace-with
             class="com.lingoking.client.presenter.ValidatorFactory">
         <when-type-is class="javax.validation.ValidatorFactory" />

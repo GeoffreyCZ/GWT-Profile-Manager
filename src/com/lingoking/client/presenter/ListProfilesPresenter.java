@@ -11,7 +11,6 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
 import com.lingoking.client.events.CreateProfileEvent;
-import com.lingoking.client.events.EditProfileEvent;
 import com.lingoking.client.events.ShowProfileEvent;
 import com.lingoking.shared.model.Profile;
 
@@ -104,7 +103,7 @@ public class ListProfilesPresenter implements Presenter {
                 List<Profile> data = new ArrayList<>();
 
                 for (int i = 0; i < result.size(); ++i) {
-                    data.add(new Profile(profile.get(i).getId(), profile.get(i).getFirstName(), profile.get(i).getLastName(), profile.get(i).getEmail(), profile.get(i).getAvatar()));
+                    data.add(new Profile(profile.get(i).getId(), profile.get(i).getFirstName(), profile.get(i).getLastName(), profile.get(i).getEmailAddress(), profile.get(i).getAvatar()));
                 }
                 display.setData(data);
             }

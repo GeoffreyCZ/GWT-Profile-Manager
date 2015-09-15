@@ -54,13 +54,13 @@ public class ProfileView extends Composite implements ProfilePresenter.Display {
     public void setData(Profile profile) {
         avatarImage.setUrl(UploadServlet.PATH_TO_FILE + profile.getAvatar());
         avatarImage.setMaxSize(90, 90);
-        if (profile.getAvatar() == null) {
+        if (profile.getAvatar() == "") {
             avatarImage.setUrl("lib/avatar.jpg");
         }
         profileTable.removeAllRows();
         profileTable.setText(1, 1, profile.getFirstName());
         profileTable.setText(2, 1, profile.getLastName());
-        profileTable.setText(3, 1, profile.getEmail());
+        profileTable.setText(3, 1, profile.getEmailAddress());
         profileTable.setText(4, 1, profile.getPhoneNumber());
         profileTable.setText(5, 1, profile.getAddress().getStreet());
         profileTable.setText(5, 2, profile.getAddress().getStreetNumber());

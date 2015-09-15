@@ -1,12 +1,8 @@
 package com.lingoking.client.views;
 
-import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.ui.*;
-import com.google.gwt.view.client.ListDataProvider;
 import com.lingoking.client.presenter.ListProfilesPresenter;
 import com.lingoking.server.UploadServlet;
 import com.lingoking.shared.model.Profile;
@@ -68,7 +64,7 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         profilesTable.removeAllRows();
         for (int i = 0; i < data.size(); ++i) {
             avatarImage = new FitImage();
-            if (data.get(i).getAvatar() == null) {
+            if (data.get(i).getAvatar() == "") {
                 avatarImage.setUrl("lib/avatar.jpg");
             } else {
                 avatarImage.setUrl(UploadServlet.PATH_TO_FILE + data.get(i).getAvatar());
@@ -78,7 +74,7 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
             profilesTable.setWidget(i, 1, avatarImage);
             profilesTable.setText(i, 2, data.get(i).getFirstName());
             profilesTable.setText(i, 3, data.get(i).getLastName());
-            profilesTable.setText(i, 4, data.get(i).getEmail());
+            profilesTable.setText(i, 4, data.get(i).getEmailAddress());
         }
     }
 

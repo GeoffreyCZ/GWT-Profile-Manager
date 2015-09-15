@@ -1,7 +1,5 @@
 package com.lingoking.shared.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import java.io.Serializable;
 
 public class Profile implements Serializable {
@@ -9,12 +7,10 @@ public class Profile implements Serializable {
     private String id;
     private String firstName;
     private String lastName;
-    private String email;
-
-
+    private String emailAddress;
     private String password;
-    private String passwordAgain;
 
+    private String passwordAgain;
     private String phoneNumber;
     private Address address;
     private String avatar;
@@ -22,27 +18,30 @@ public class Profile implements Serializable {
     public Profile() {
     }
 
-    public Profile(String id, String firstName, String lastName, String email, String avatar) {
+    public Profile(String id, String firstName, String lastName, String emailAddress, String avatar) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.emailAddress = emailAddress;
         this.avatar = avatar;
     }
 
-    public String getPasswordAgain() {
-        return passwordAgain;
-    }
-
-    public void setPasswordAgain(String passwordAgain) {
-        this.passwordAgain = passwordAgain;
-    }
-
-    public Profile(String id, String firstName, String lastName, String email, String password, String passwordAgain, String phoneNumber, Address address, String avatar) {
+    public Profile(String id, String firstName, String lastName, String emailAddress, String password, String phoneNumber, Address address, String avatar) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.avatar = avatar;
+    }
+
+    public Profile(String id, String firstName, String lastName, String emailAddress, String password, String passwordAgain, String phoneNumber, Address address, String avatar) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
         this.password = password;
         this.passwordAgain = passwordAgain;
         this.phoneNumber = phoneNumber;
@@ -76,12 +75,12 @@ public class Profile implements Serializable {
 
     public String getWholeName() {return firstName + " " + lastName;}
 
-    public String getEmail() {
-        return email;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getPassword() {
@@ -90,6 +89,14 @@ public class Profile implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordAgain() {
+        return passwordAgain;
+    }
+
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
     }
 
     public String getPhoneNumber() {

@@ -1,7 +1,6 @@
 package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.EditProfilePresenter;
 import com.lingoking.shared.model.Address;
@@ -88,10 +87,10 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         firstName.setFocus(true);
     }
 
-    public void setData(Profile profile) {
+    public void setProfile(Profile profile) {
         firstName.setText(profile.getFirstName());
         lastName.setText(profile.getLastName());
-        emailAddress.setText(profile.getEmail());
+        emailAddress.setText(profile.getEmailAddress());
         phoneNumber.setText(profile.getPhoneNumber());
         street.setText(profile.getAddress().getStreet());
         streetNumber.setText(profile.getAddress().getStreetNumber());
@@ -100,24 +99,12 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
 //        avatar.setText(profile.getAvatar());
     }
 
-    public Profile getData() {
+    public Profile getProfile() {
         Address address = new Address(street.getText(),streetNumber.getText(), city.getText(), postcode.getText());
         Profile profile = new Profile(null, firstName.getText(), lastName.getText(), emailAddress.getText(),
-                password.getText(), passwordAgain.getText(), phoneNumber.getText(), address, avatar.getText());
+                password.getText(), phoneNumber.getText(), address, avatar.getText());
         return profile;
     }
-
-//    public HasValue<String> getFirstName() {
-//        return firstName;
-//    }
-//
-//    public HasValue<String> getLastName() {
-//        return lastName;
-//    }
-//
-//    public HasValue<String> getEmail() {
-//        return emailAddress;
-//    }
 
     public HasClickHandlers getEditButton() {
         return editButton;

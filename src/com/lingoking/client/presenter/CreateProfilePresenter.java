@@ -4,7 +4,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -18,10 +17,14 @@ public class CreateProfilePresenter implements Presenter {
     public interface Display {
         HasClickHandlers getCreateButton();
         HasClickHandlers getCancelButton();
-        Profile getData();
+        Profile getProfile();
         Widget asWidget();
         FormPanel getFormPanel();
+        void setProfile(Profile profile);
+        void commit();
+        boolean validate();
     }
+
 
     private Profile profile;
     private final ProfilesServiceAsync rpcService;
@@ -33,17 +36,22 @@ public class CreateProfilePresenter implements Presenter {
         this.eventBus = eventBus;
         this.profile = new Profile();
         this.display = display;
+        display.setProfile(profile);
         bind();
     }
 
     public void bind() {
         this.display.getCreateButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                String action = "UploadServlet?profile_name=" + display.getData().getAvatar();
+                String action;
+                if (display.getProfile().getAvatar() != "") {
+                    action = "UploadServlet?profile_name=" + display.getProfile().getAvatar();
+                } else {
+                    action = null;
+                }
                 display.getFormPanel().setAction(action);
                 Window.alert("bind: " + action);
                 display.getFormPanel().submit();
-
             }
         });
 
@@ -66,15 +74,20 @@ public class CreateProfilePresenter implements Presenter {
     }
 
     private void doCreate() {
-        profile = display.getData();
-        rpcService.createProfile(profile, new AsyncCallback<Profile>() {
-            public void onSuccess(Profile result) {
-                eventBus.fireEvent(new ProfileCreatedEvent(result));
-            }
-            public void onFailure(Throwable caught) {
-                Window.alert("Error creating new profile.");
-            }
-        });
+        profile = display.getProfile();
+        if (display.validate()) {
+            display.commit();
+            rpcService.createProfile(profile, new AsyncCallback<Profile>() {
+                public void onSuccess(Profile result) {
+                    eventBus.fireEvent(new ProfileCreatedEvent(result));
+                }
+
+                public void onFailure(Throwable caught) {
+                    Window.alert("Error creating profile.");
+                }
+            });
+        }
+
     }
 
 

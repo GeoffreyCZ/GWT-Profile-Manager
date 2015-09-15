@@ -33,7 +33,7 @@ public class ConnectionConfiguration {
             String sql = "INSERT INTO " + DB_NAME + "." + TABLE_NAME + " VALUES (null , ?, '" +
             //                    profile.getFirstName() + "', '" +
                     profile.getLastName() + "', '" +
-                    profile.getEmail() + "', '" +
+                    profile.getEmailAddress() + "', '" +
                     profile.getPassword() + "', '" +
                     profile.getPhoneNumber() + "', '" +
                     profile.getAddress().getStreet() + "', '" +
@@ -63,10 +63,10 @@ public class ConnectionConfiguration {
         connection = getConnection();
         try {
             statement = connection.createStatement();
-            String sql = "SELECT id, firstName, lastName, email, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + ";";
+            String sql = "SELECT id, firstName, lastName, emailAddress, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + ";";
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                Profile profile = new Profile(rs.getString("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("avatarURL"));
+                Profile profile = new Profile(rs.getString("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("emailAddress"), rs.getString("avatarURL"));
                 listOfProfiles.add(profile);
             }
         } catch (SQLException se) {
@@ -110,7 +110,7 @@ public class ConnectionConfiguration {
             String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " +
                     "firstName = '" + newProfileData.getFirstName() +
                     "', lastName = '" + newProfileData.getLastName() +
-                    "', email = '" + newProfileData.getEmail() +
+                    "', emailAddress = '" + newProfileData.getEmailAddress() +
                     "', password = '" + newProfileData.getPassword() +
                     "', phoneNumber = '" + newProfileData.getPhoneNumber() +
                     "', street = '" + newProfileData.getAddress().getStreet() +
@@ -139,12 +139,12 @@ public class ConnectionConfiguration {
         Address address = new Address();
         try {
             statement = connection.createStatement();
-            String sql = "SELECT firstName, lastName, email, phoneNumber, street, streetNumber, city, postcode, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + " WHERE id = " + id + ";";
+            String sql = "SELECT firstName, lastName, emailAddress, phoneNumber, street, streetNumber, city, postcode, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + " WHERE id = " + id + ";";
             ResultSet rs = statement.executeQuery(sql);
             if (rs.next()) {
                 profile.setFirstName(rs.getString("firstName"));
                 profile.setLastName(rs.getString("lastName"));
-                profile.setEmail(rs.getString("email"));
+                profile.setEmailAddress(rs.getString("emailAddress"));
                 profile.setPhoneNumber(rs.getString("phoneNumber"));
                 address.setStreet(rs.getString("street"));
                 address.setStreetNumber(rs.getString("streetNumber"));
