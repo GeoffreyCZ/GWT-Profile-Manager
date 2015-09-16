@@ -29,10 +29,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 7.0.63" level="application_server_libraries" />
-    <orderEntry type="library" exported="" name="gwt-user" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.36-bin" level="project" />
-    <orderEntry type="library" exported="" name="commons-fileupload-1.2.1" level="project" />
-    <orderEntry type="library" exported="" name="gwt-image-loader-1.1.4" level="project" />
-    <orderEntry type="library" exported="" name="gwt-pectin-0.8.1" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="gwt-user" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="mysql-connector-java-5.1.36-bin" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="commons-fileupload-1.2.1" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="gwt-image-loader-1.1.4" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="gwt-pectin-0.8.1" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="gwt-image-loader-1.1.41" level="project" />
   </component>
 </module>

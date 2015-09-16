@@ -120,9 +120,9 @@ public class CreateProfilePresenter implements Presenter {
             display.getEmailErrorMessage().setText("Please enter valid email address!");
             valid = false;
         }
-//        if (rpcService.checkEmail(email, new AsyncCallback<Profile>() {
+//        rpcService.checkEmail(email, new AsyncCallback<Profile>() {
 //            public void onSuccess(Profile result) {
-//                valid = false;
+//
 //            }
 //            public void onFailure(Throwable caught) {
 //                Window.alert("Error searching in database.");
