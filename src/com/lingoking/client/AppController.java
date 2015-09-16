@@ -23,6 +23,13 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     private void bind() {
         History.addValueChangeHandler(this);
 
+        eventBus.addHandler(UserSignedInEvent.TYPE, new UserSignedInEventHandler() {
+            @Override
+            public void onUserSignedIn(UserSignedInEvent event) {
+                doSignIn();
+            }
+        });
+
         eventBus.addHandler(CreateProfileEvent.TYPE,
                 new CreateProfileEventHandler() {
                     public void onCreateProfile(CreateProfileEvent event) {
@@ -73,6 +80,10 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         });
     }
 
+    private void doSignIn() {
+        History.newItem("home");
+    }
+
     private void doCreateProfile() {
         History.newItem("create");
     }
@@ -121,6 +132,10 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 
         if (token != null) {
             Presenter presenter = null;
+            if (token.equals("login")) {
+                presenter = new LoginPresenter(rpcService, eventBus, new LoginView());
+            }
+
             if (token.equals("home")) {
                 presenter = new WelcomePagePresenter(eventBus, new WelcomePageView());
             }

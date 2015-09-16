@@ -3,6 +3,7 @@ package com.lingoking.server;
 import com.lingoking.shared.model.Address;
 import com.lingoking.shared.model.Profile;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -26,6 +27,15 @@ public class ConnectionConfiguration {
     }
 
     public static void insertIntoDB(Profile profile) {
+        String hashedPassword;
+        String salt = null;
+        try {
+            salt = PasswordHash.getSalt();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e);
+        }
+        hashedPassword = PasswordHash.getPassword(profile.getPassword(), salt);
+
         Connection connection;
         PreparedStatement statement;
         connection = getConnection();
@@ -34,13 +44,14 @@ public class ConnectionConfiguration {
             //                    profile.getFirstName() + "', '" +
                     profile.getLastName() + "', '" +
                     profile.getEmailAddress() + "', '" +
-                    profile.getPassword() + "', '" +
+                    hashedPassword + "', '" +
                     profile.getPhoneNumber() + "', '" +
                     profile.getAddress().getStreet() + "', '" +
                     profile.getAddress().getStreetNumber() + "', '" +
                     profile.getAddress().getCity() + "', '" +
                     profile.getAddress().getPostcode() + "', '" +
-                    profile.getAvatar() + "');";
+                    profile.getAvatar() + "', '" +
+                    salt + "');";
             statement = connection.prepareStatement(sql);
             System.out.println(sql);
             statement.setString(1, profile.getFirstName());
@@ -55,6 +66,30 @@ public class ConnectionConfiguration {
             }
         }
     }
+
+//    public static Boolean searchInDB(Profile profile) {
+//        Connection connection;
+//        Statement statement;
+//        connection = getConnection();
+//        try {
+//            statement = connection.createStatement();
+//            String sql = "SELECT id, firstName, lastName, emailAddress, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + ";";
+//            ResultSet rs = statement.executeQuery(sql);
+//            while (rs.next()) {
+//                Profile profile = new Profile(rs.getString("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("emailAddress"), rs.getString("avatarURL"));
+//                listOfProfiles.add(profile);
+//            }
+//        } catch (SQLException se) {
+//            se.printStackTrace();
+//        } finally {
+//            try {
+//                connection.close();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return true;
+//    }
 
     public static ArrayList<Profile> fetchAllProfilesFromDB() {
         ArrayList<Profile> listOfProfiles = new ArrayList<>();

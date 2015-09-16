@@ -1,14 +1,10 @@
 package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.CreateProfilePresenter;
 import com.lingoking.shared.model.Address;
 import com.lingoking.shared.model.Profile;
-import com.pietschy.gwt.pectin.client.form.binding.FormBinder;
-import com.pietschy.gwt.pectin.client.form.validation.binding.ValidationBinder;
-import com.pietschy.gwt.pectin.client.form.validation.component.ValidationDisplayPanel;
 
 import java.util.Random;
 

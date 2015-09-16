@@ -12,5 +12,6 @@ public interface ProfilesServiceAsync {
     void getListOfProfiles(AsyncCallback<ArrayList<Profile>> callback);
     void editProfile(String id, Profile profile, AsyncCallback<Profile> callback);
     void fetchProfile(String id, AsyncCallback<Profile> callback);
+    void login(Profile profile, AsyncCallback<Boolean> callback);
 }
 

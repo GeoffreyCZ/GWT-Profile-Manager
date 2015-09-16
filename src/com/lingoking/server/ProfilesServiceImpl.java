@@ -30,6 +30,11 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return profiles;
     }
 
+    public Boolean login(Profile profile) {
+        ConnectionConfiguration.searchInDB(profile);
+        return true;
+    }
+
     public Boolean deleteProfiles(String id) {
         ConnectionConfiguration.deleteProfilesFromDB(id);
         return true;
