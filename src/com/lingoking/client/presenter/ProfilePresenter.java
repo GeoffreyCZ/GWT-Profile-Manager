@@ -84,7 +84,7 @@ public class ProfilePresenter implements Presenter {
                 Profile profile;
                 profile = result;
                 display.setData(profile);
-                Window.alert("fetch profile");
+//                Window.alert("fetch profile");
             }
 
             public void onFailure(Throwable caught) {

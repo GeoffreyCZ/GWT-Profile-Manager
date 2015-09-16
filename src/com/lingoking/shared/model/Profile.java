@@ -37,6 +37,16 @@ public class Profile implements Serializable {
         this.avatar = avatar;
     }
 
+    public Profile(String firstName, String lastName, String emailAddress, String phoneNumber, Address address, String avatar) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.avatar = avatar;
+    }
+
+
     public Profile(String id, String firstName, String lastName, String emailAddress, String password, String passwordAgain, String phoneNumber, Address address, String avatar) {
         this.id = id;
         this.firstName = firstName;

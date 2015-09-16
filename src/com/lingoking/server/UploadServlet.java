@@ -66,7 +66,6 @@ public class UploadServlet extends HttpServlet {
                 if (!fi.isFormField()) {
                     file = new File(PATH_TO_FILE, file_name);
                     fi.write(file);
-                    file.mkdir();
                     System.out.println("Your file has been uploaded.");
                 }
             }

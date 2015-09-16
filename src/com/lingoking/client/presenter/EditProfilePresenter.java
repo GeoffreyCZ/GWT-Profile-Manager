@@ -6,7 +6,9 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
 import com.lingoking.client.events.CreateProfileCancelledEvent;
@@ -18,9 +20,12 @@ public class EditProfilePresenter implements Presenter {
     public interface Display {
         HasClickHandlers getEditButton();
         HasClickHandlers getCancelButton();
+        FormPanel getFormPanel();
         Widget asWidget();
         void setProfile(Profile profile);
         Profile getProfile();
+        Label getPhoneNumberErrorMessage();
+        Label getEmailErrorMessage();
     }
 
     private Profile profile;
@@ -41,6 +46,20 @@ public class EditProfilePresenter implements Presenter {
     public void bind() {
         this.display.getEditButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
+                String action;
+                if (!display.getProfile().getAvatar().equals("")) {
+                    action = "UploadServlet?profile_name=" + display.getProfile().getAvatar();
+                } else {
+                    action = null;
+                }
+                display.getFormPanel().setAction(action);
+//                Window.alert("bind: " + action);
+                display.getFormPanel().submit();
+            }
+        });
+
+        this.display.getFormPanel().addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
+            public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
                 doEdit();
             }
         });
@@ -74,16 +93,34 @@ public class EditProfilePresenter implements Presenter {
 
     private void doEdit() {
         profile = display.getProfile();
+        if (validate()) {
+            rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
+                public void onSuccess(Profile result) {
+                    eventBus.fireEvent(new ProfileCreatedEvent(result));
+                }
 
-        rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
-            public void onSuccess(Profile result) {
-                eventBus.fireEvent(new ProfileCreatedEvent(result));
-            }
-
-            public void onFailure(Throwable caught) {
-                Window.alert("Error editing the profile.");
-            }
-        });
+                public void onFailure(Throwable caught) {
+                    Window.alert("Error editing the profile.");
+                }
+            });
+        }
     }
+
+    private boolean validate() {
+        boolean valid = true;
+        display.getPhoneNumberErrorMessage().setText(null);
+        display.getEmailErrorMessage().setText(null);
+
+        if (display.getProfile().getPhoneNumber().equals("")) {
+            display.getPhoneNumberErrorMessage().setText("Please enter valid phone number!");
+            valid = false;
+        }
+        if (!display.getProfile().getEmailAddress().matches(CreateProfilePresenter.EMAIL_PATTERN)) {
+            display.getEmailErrorMessage().setText("Please enter valid email address!");
+            valid = false;
+        }
+        return valid;
+    }
+
 }
 

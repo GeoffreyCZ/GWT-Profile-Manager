@@ -116,7 +116,8 @@ public class ConnectionConfiguration {
                     "', street = '" + newProfileData.getAddress().getStreet() +
                     "', streetNumber = '" + newProfileData.getAddress().getStreetNumber() +
                     "', city = '" + newProfileData.getAddress().getCity() +
-                    "', postcode = '" + newProfileData.getAddress().getPostcode() +"' WHERE id = " + id + ";";
+                    "', postcode = '" + newProfileData.getAddress().getPostcode() +
+                    "', avatarURL = '" + newProfileData.getAvatar() +"' WHERE id = " + id + ";";
             statement.executeUpdate(sql);
             System.out.println(sql);
         } catch (SQLException se) {

@@ -20,11 +20,14 @@ public class CreateProfilePresenter implements Presenter {
         Profile getProfile();
         Widget asWidget();
         FormPanel getFormPanel();
-        void setProfile(Profile profile);
-        void commit();
-        boolean validate();
+        Label getPasswordErrorMessage();
+        Label getPasswordAgainErrorMessage();
+        Label getPasswordMismatchErrorMessage();
+        Label getPhoneNumberErrorMessage();
+        Label getEmailErrorMessage();
     }
 
+    public static final String EMAIL_PATTERN =  "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,6})$";
 
     private Profile profile;
     private final ProfilesServiceAsync rpcService;
@@ -36,7 +39,6 @@ public class CreateProfilePresenter implements Presenter {
         this.eventBus = eventBus;
         this.profile = new Profile();
         this.display = display;
-        display.setProfile(profile);
         bind();
     }
 
@@ -44,13 +46,13 @@ public class CreateProfilePresenter implements Presenter {
         this.display.getCreateButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 String action;
-                if (display.getProfile().getAvatar() != "") {
+                if (!display.getProfile().getAvatar().equals("")) {
                     action = "UploadServlet?profile_name=" + display.getProfile().getAvatar();
                 } else {
                     action = null;
                 }
                 display.getFormPanel().setAction(action);
-                Window.alert("bind: " + action);
+//                Window.alert("bind: " + action);
                 display.getFormPanel().submit();
             }
         });
@@ -75,8 +77,7 @@ public class CreateProfilePresenter implements Presenter {
 
     private void doCreate() {
         profile = display.getProfile();
-        if (display.validate()) {
-            display.commit();
+        if (validate()) {
             rpcService.createProfile(profile, new AsyncCallback<Profile>() {
                 public void onSuccess(Profile result) {
                     eventBus.fireEvent(new ProfileCreatedEvent(result));
@@ -88,6 +89,37 @@ public class CreateProfilePresenter implements Presenter {
             });
         }
 
+    }
+
+    private boolean validate() {
+        boolean valid = true;
+        display.getPasswordErrorMessage().setText(null);
+        display.getPasswordAgainErrorMessage().setText(null);
+        display.getPasswordMismatchErrorMessage().setText(null);
+        display.getPhoneNumberErrorMessage().setText(null);
+        display.getEmailErrorMessage().setText(null);
+
+        if (display.getProfile().getPassword().equals("")) {
+            display.getPasswordErrorMessage().setText("Please enter your password!");
+            valid = false;
+        }
+        if (display.getProfile().getPasswordAgain().equals("")) {
+            display.getPasswordAgainErrorMessage().setText("Please confirm your password!");
+            valid = false;
+        }
+        if (!display.getProfile().getPassword().equals(display.getProfile().getPasswordAgain())) {
+            display.getPasswordMismatchErrorMessage().setText("Passwords don't match!");
+            valid = false;
+        }
+        if (display.getProfile().getPhoneNumber().equals("")) {
+            display.getPhoneNumberErrorMessage().setText("Please enter phone number!");
+            valid = false;
+        }
+        if (!display.getProfile().getEmailAddress().matches(EMAIL_PATTERN)) {
+            display.getEmailErrorMessage().setText("Please enter valid email address!");
+            valid = false;
+        }
+        return valid;
     }
 
 

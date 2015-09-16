@@ -39,75 +39,36 @@
         <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/CreateProfilePresenter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+              <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2226#2227#0" expanded="true" />
-                <element signature="e#2268#2269#0" expanded="true" />
-                <element signature="e#2409#2410#0" expanded="true" />
-                <element signature="e#2494#2495#0" expanded="true" />
-                <element signature="e#2906#2907#0" expanded="true" />
-                <element signature="e#2997#2998#0" expanded="true" />
-                <element signature="e#3056#3057#0" expanded="true" />
-                <element signature="e#3135#3136#0" expanded="true" />
+                <element signature="e#3251#3252#0" expanded="true" />
+                <element signature="e#3330#3331#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListProfilesView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/ListProfilesView.java">
+      <file leaf-file-name="EditProfilePresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/EditProfilePresenter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
+              <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/ProfileView.java">
+      <file leaf-file-name="EditProfileView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/EditProfileView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateProfileModel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74161077">
-              <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
+              <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
               <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfilesServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/ProfilesServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnectionConfiguration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/ConnectionConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5172415">
-              <caret line="112" column="67" selection-start-line="112" selection-start-column="62" selection-end-line="112" selection-end-column="67" />
-              <folding>
-                <marker date="1442302866312" expanded="true" signature="1175:1839" placeholder="INSERT INTO ..." />
-                <marker date="1442302866312" expanded="true" signature="2604:2681" placeholder="SELECT id, f..profiles..." />
-                <marker date="1442302866312" expanded="true" signature="3556:3628" placeholder="DELETE FROM ..." />
-                <marker date="1442302866312" expanded="true" signature="4230:4993" placeholder="UPDATE profi..." />
-                <marker date="1442302866312" expanded="true" signature="5693:5847" placeholder="SELECT first..profiles..." />
+                <element signature="e#4614#4615#0" expanded="true" />
+                <element signature="e#4660#4661#0" expanded="true" />
+                <element signature="e#4703#4704#0" expanded="true" />
+                <element signature="e#4743#4744#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,25 +78,57 @@
         <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/UploadServlet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
+              <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateProfileView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileView.java">
+      <file leaf-file-name="ConnectionConfiguration.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/ConnectionConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state vertical-scroll-proportion="2.1409397">
+              <caret line="115" column="79" selection-start-line="115" selection-start-column="79" selection-end-line="115" selection-end-column="79" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1316#1317#0" expanded="true" />
-                <element signature="e#1362#1363#0" expanded="true" />
-                <element signature="e#4333#4334#0" expanded="true" />
-                <element signature="e#4363#4364#0" expanded="true" />
-                <element signature="e#4400#4401#0" expanded="true" />
-                <element signature="e#4439#4440#0" expanded="true" />
+                <marker date="1442394332862" expanded="true" signature="1175:1839" placeholder="INSERT INTO ..." />
+                <marker date="1442394332862" expanded="true" signature="2604:2681" placeholder="SELECT id, f..profiles..." />
+                <marker date="1442394332862" expanded="true" signature="3556:3628" placeholder="DELETE FROM ..." />
+                <marker date="1442394332862" expanded="true" signature="4230:5063" placeholder="UPDATE profi..." />
+                <marker date="1442394332862" expanded="true" signature="5763:5917" placeholder="SELECT first..profiles..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServletFileUpload.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/servlet/ServletFileUpload.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.37037">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileUploadBase.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/FileUploadBase.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.5185184">
+              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+              <folding>
+                <element signature="e#3104#3105#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DiskFileItemFactory.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/disk/DiskFileItemFactory.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.185185">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding>
+                <element signature="e#649#650#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,20 +138,29 @@
         <entry file="file://$PROJECT_DIR$/src/com/lingoking/shared/model/Profile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateProfileView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
               <folding>
-                <element signature="e#1647#1648#0" expanded="true" />
-                <element signature="e#1672#1673#0" expanded="true" />
-                <element signature="e#1708#1709#0" expanded="true" />
-                <element signature="e#1736#1737#0" expanded="true" />
-                <element signature="e#2251#2252#0" expanded="true" />
-                <element signature="e#2299#2300#0" expanded="true" />
-                <element signature="e#2334#2335#0" expanded="true" />
-                <element signature="e#2365#2366#0" expanded="true" />
-                <element signature="e#2493#2494#0" expanded="true" />
-                <element signature="e#2529#2530#0" expanded="true" />
-                <element signature="e#2587#2588#0" expanded="true" />
-                <element signature="e#2637#2638#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#5167#5168#0" expanded="true" />
+                <element signature="e#5210#5211#0" expanded="true" />
+                <element signature="e#5261#5262#0" expanded="true" />
+                <element signature="e#5309#5310#0" expanded="true" />
+                <element signature="e#5363#5364#0" expanded="true" />
+                <element signature="e#5414#5415#0" expanded="true" />
+                <element signature="e#5463#5464#0" expanded="true" />
+                <element signature="e#5509#5510#0" expanded="true" />
+                <element signature="e#5552#5553#0" expanded="true" />
+                <element signature="e#5592#5593#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -202,7 +204,6 @@
         <option value="$PROJECT_DIR$/src/com/lingoking/client/events/ShowProfileEvent.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/events/ShowProfileEventHandler.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/events/EditProfileEvent.java" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/client/AppController.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/shared/model/ProfileDetails.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/server/LoadConfiguration.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/ProfilesService.java" />
@@ -217,24 +218,25 @@
         <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/WelcomePagePresenter.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/ValidatorFactory.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/server/ProfilesServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/ProfilePresenter.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/ListProfilesPresenter.java" />
         <option value="$PROJECT_DIR$/war/lingoking.css" />
         <option value="$PROJECT_DIR$/war/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/client/views/EditProfileView.java" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/EditProfilePresenter.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileModelView.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/lingoking.gwt.xml" />
-        <option value="127.0.0.1:9876/sourcemaps/lingoking/com/google/gwt/dev/jjs/intrinsic/com/google/gwt/lang/Cast.java" />
         <option value="127.0.0.1:9876/sourcemaps/lingoking/gen/com/lingoking/client/views/CreateProfileModel_ProfileProviderImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/server/ConnectionConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/server/UploadServlet.java" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/CreateProfilePresenter.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/views/ListProfilesView.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/views/ProfileView.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileModel.java" />
+        <option value="127.0.0.1:9876/sourcemaps/lingoking/com/google/gwt/dev/jjs/intrinsic/com/google/gwt/lang/Cast.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/client/AppController.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/ProfilePresenter.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/server/ConnectionConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/server/UploadServlet.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/shared/model/Profile.java" />
         <option value="$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileView.java" />
-        <option value="$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileModel.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/CreateProfilePresenter.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/client/views/EditProfileView.java" />
+        <option value="$PROJECT_DIR$/src/com/lingoking/client/presenter/EditProfilePresenter.java" />
       </list>
     </option>
   </component>
@@ -300,7 +302,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -826,6 +827,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1275,12 +1277,13 @@
       <workItem from="1441957583231" duration="15360000" />
       <workItem from="1442214314625" duration="7358000" />
       <workItem from="1442245727464" duration="184000" />
-      <workItem from="1442301205618" duration="11806000" />
+      <workItem from="1442301205618" duration="12394000" />
+      <workItem from="1442387416511" duration="11396000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="213668000" />
+    <option name="totallyTimeSpent" value="225652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1297,7 +1300,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32467532" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28624734" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28944564" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1333,7 +1336,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="19" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/lingoking/client/presenter/CreateProfilePresenter.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1342,62 +1353,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/servlet/ServletRequestContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3333335">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/ParameterParser.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3333335">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/FileUploadBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3333335">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/servlet/ServletFileUpload.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.851851">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/ValueBoxBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33223686">
-          <caret line="327" column="14" selection-start-line="327" selection-start-column="14" selection-end-line="327" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../validation-api-1.0.0.GA.jar!/javax/validation/bootstrap/GenericBootstrap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProfileManagement.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/validation/client/AbstractGwtValidatorFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="67" selection-start-line="55" selection-start-column="67" selection-end-line="55" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../validation-api-1.1.0.Final.jar!/javax/validation/ValidatorFactory.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1423,13 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/ProfileManagement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1476,21 +1424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/ProfilePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="43" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/UIObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33277312">
-          <caret line="666" column="14" selection-start-line="666" selection-start-column="14" selection-end-line="666" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/war/lib/avatar.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1532,14 +1465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/EditProfilePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lingoking/lingoking.gwt.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1548,31 +1473,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/EditProfileView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
-          <folding>
-            <element signature="e#2833#2834#0" expanded="true" />
-            <element signature="e#2874#2875#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="http://127.0.0.1:9876/sourcemaps/lingoking/gen/com/lingoking/client/views/CreateProfileModel_ProfileProviderImpl.java">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="http://127.0.0.1:9876/sourcemaps/lingoking/com/google/gwt/dev/jjs/intrinsic/com/google/gwt/lang/Cast.java">
       <provider selected="true" editor-type-id="httpFileEditor">
         <state />
       </provider>
@@ -1620,30 +1521,6 @@
             <element signature="e#8002#8003#0" expanded="false" />
             <element signature="e#11562#11563#0" expanded="false" />
             <element signature="e#11592#11593#0" expanded="false" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="//..." />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1414417902000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1671,100 +1548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/ProfilesServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/ConnectionConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5172415">
-          <caret line="112" column="67" selection-start-line="112" selection-start-column="62" selection-end-line="112" selection-end-column="67" />
-          <folding>
-            <marker date="1442302866312" expanded="true" signature="1175:1839" placeholder="INSERT INTO ..." />
-            <marker date="1442302866312" expanded="true" signature="2604:2681" placeholder="SELECT id, f..profiles..." />
-            <marker date="1442302866312" expanded="true" signature="3556:3628" placeholder="DELETE FROM ..." />
-            <marker date="1442302866312" expanded="true" signature="4230:4993" placeholder="UPDATE profi..." />
-            <marker date="1442302866312" expanded="true" signature="5693:5847" placeholder="SELECT first..profiles..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/FileUpload.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26677853">
-          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/UploadServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/CreateProfilePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2226#2227#0" expanded="true" />
-            <element signature="e#2268#2269#0" expanded="true" />
-            <element signature="e#2409#2410#0" expanded="true" />
-            <element signature="e#2494#2495#0" expanded="true" />
-            <element signature="e#2906#2907#0" expanded="true" />
-            <element signature="e#2997#2998#0" expanded="true" />
-            <element signature="e#3056#3057#0" expanded="true" />
-            <element signature="e#3135#3136#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/ListProfilesView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/ProfileView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/shared/model/Profile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
-          <folding>
-            <element signature="e#1647#1648#0" expanded="true" />
-            <element signature="e#1672#1673#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
-            <element signature="e#1736#1737#0" expanded="true" />
-            <element signature="e#2251#2252#0" expanded="true" />
-            <element signature="e#2299#2300#0" expanded="true" />
-            <element signature="e#2334#2335#0" expanded="true" />
-            <element signature="e#2365#2366#0" expanded="true" />
-            <element signature="e#2493#2494#0" expanded="true" />
-            <element signature="e#2529#2530#0" expanded="true" />
-            <element signature="e#2587#2588#0" expanded="true" />
-            <element signature="e#2637#2638#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1773,22 +1556,6 @@
         <state vertical-scroll-proportion="-0.9513423">
           <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1362#1363#0" expanded="true" />
-            <element signature="e#4333#4334#0" expanded="true" />
-            <element signature="e#4363#4364#0" expanded="true" />
-            <element signature="e#4400#4401#0" expanded="true" />
-            <element signature="e#4439#4440#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1805,18 +1572,311 @@
         <state vertical-scroll-proportion="0.05704698">
           <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
           <folding>
-            <element signature="e#1086#1087#0" expanded="true" />
-            <element signature="e#1118#1119#0" expanded="true" />
+            <element signature="e#1086#1087#0" expanded="false" />
+            <element signature="e#1118#1119#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileModel.java">
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/DOM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74161077">
-          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1490" column="0" selection-start-line="1490" selection-start-column="0" selection-end-line="1490" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/UIObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="557" column="0" selection-start-line="557" selection-start-column="0" selection-end-line="557" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/core/client/JavaScriptObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding>
+            <element signature="e#4277#4278#0" expanded="true" />
+            <element signature="e#4302#4303#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/dom/client/InputElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding>
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/Label.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="388" column="0" selection-start-line="388" selection-start-column="0" selection-end-line="388" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/FileUpload.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding>
+            <element signature="e#3492#3493#0" expanded="true" />
+            <element signature="e#4172#4173#0" expanded="true" />
+            <element signature="e#4208#4209#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="603" column="0" selection-start-line="603" selection-start-column="0" selection-end-line="603" selection-end-column="0" />
+          <folding>
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1413525996000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/ValueBoxBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+          <folding>
+            <element signature="e#5844#5845#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="http://127.0.0.1:9876/sourcemaps/lingoking/com/google/gwt/dev/jjs/intrinsic/com/google/gwt/lang/Cast.java">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/ProfileManagement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.9310346">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+          <folding>
+            <element signature="e#2791#2792#0" expanded="true" />
+            <element signature="e#2832#2833#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/ProfilesServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/ListProfilesView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/ProfilePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/ProfileView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/disk/DiskFileItemFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.185185">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#649#650#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/FileUploadBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5185184">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <element signature="e#3104#3105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../+/lib/commons-fileupload-1.2.1.jar!/org/apache/commons/fileupload/servlet/ServletFileUpload.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.37037">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/UploadServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/shared/model/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/EditProfileView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
+          <folding>
+            <element signature="e#4614#4615#0" expanded="true" />
+            <element signature="e#4660#4661#0" expanded="true" />
+            <element signature="e#4703#4704#0" expanded="true" />
+            <element signature="e#4743#4744#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/views/CreateProfileView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5167#5168#0" expanded="true" />
+            <element signature="e#5210#5211#0" expanded="true" />
+            <element signature="e#5261#5262#0" expanded="true" />
+            <element signature="e#5309#5310#0" expanded="true" />
+            <element signature="e#5363#5364#0" expanded="true" />
+            <element signature="e#5414#5415#0" expanded="true" />
+            <element signature="e#5463#5464#0" expanded="true" />
+            <element signature="e#5509#5510#0" expanded="true" />
+            <element signature="e#5552#5553#0" expanded="true" />
+            <element signature="e#5592#5593#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/CreateProfilePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3251#3252#0" expanded="true" />
+            <element signature="e#3330#3331#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/client/presenter/EditProfilePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lingoking/server/ConnectionConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.1409397">
+          <caret line="115" column="79" selection-start-line="115" selection-start-column="79" selection-end-line="115" selection-end-column="79" />
+          <folding>
+            <marker date="1442394332862" expanded="true" signature="1175:1839" placeholder="INSERT INTO ..." />
+            <marker date="1442394332862" expanded="true" signature="2604:2681" placeholder="SELECT id, f..profiles..." />
+            <marker date="1442394332862" expanded="true" signature="3556:3628" placeholder="DELETE FROM ..." />
+            <marker date="1442394332862" expanded="true" signature="4230:5063" placeholder="UPDATE profi..." />
+            <marker date="1442394332862" expanded="true" signature="5763:5917" placeholder="SELECT first..profiles..." />
           </folding>
         </state>
       </provider>
