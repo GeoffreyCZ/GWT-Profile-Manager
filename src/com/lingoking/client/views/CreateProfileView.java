@@ -74,12 +74,17 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         formUploadPanel.add(lastName);
         formUploadPanel.add(new Label("Email Address"));
         formUploadPanel.add(emailAddress);
+        formUploadPanel.add(emailErrorMessage);
         formUploadPanel.add(new Label("Password"));
         formUploadPanel.add(password);
+        formUploadPanel.add(passwordErrorMessage);
         formUploadPanel.add(new Label("Password confirmation"));
         formUploadPanel.add(passwordAgain);
+        formUploadPanel.add(passwordAgainErrorMessage);
+        formUploadPanel.add(passwordMismatchErrorMessage);
         formUploadPanel.add(new Label("Telephone number"));
         formUploadPanel.add(phoneNumber);
+        formUploadPanel.add(phoneNumberErrorMessage);
         formUploadPanel.add(new Label("Street"));
         formUploadPanel.add(street);
         formUploadPanel.add(new Label("Street Number"));
@@ -91,11 +96,6 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         formUploadPanel.add(new Label("Profile picture"));
         formUploadPanel.add(uploadAvatarWidget);
 
-        formUploadPanel.add(passwordErrorMessage);
-        formUploadPanel.add(passwordAgainErrorMessage);
-        formUploadPanel.add(passwordMismatchErrorMessage);
-        formUploadPanel.add(phoneNumberErrorMessage);
-        formUploadPanel.add(emailErrorMessage);
 
         formUploadPanel.add(createButton);
         formUploadPanel.add(cancelButton);

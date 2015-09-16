@@ -66,8 +66,10 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         formUploadPanel.add(lastName);
         formUploadPanel.add(new Label("Email Address"));
         formUploadPanel.add(emailAddress);
+        formUploadPanel.add(emailErrorMessage);
         formUploadPanel.add(new Label("Telephone number"));
         formUploadPanel.add(phoneNumber);
+        formUploadPanel.add(phoneNumberErrorMessage);
         formUploadPanel.add(new Label("Street"));
         formUploadPanel.add(street);
         formUploadPanel.add(new Label("Street Number"));
@@ -79,8 +81,6 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         formUploadPanel.add(new Label("Profile picture"));
         formUploadPanel.add(uploadAvatarWidget);
 
-        formUploadPanel.add(phoneNumberErrorMessage);
-        formUploadPanel.add(emailErrorMessage);
 
         formUploadPanel.add(editButton);
         formUploadPanel.add(cancelButton);
