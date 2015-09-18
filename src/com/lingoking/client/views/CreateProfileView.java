@@ -107,13 +107,11 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
 
     public Profile getProfile() {
         String avatarName;
-//        Window.alert("Filename: " + uploadAvatarWidget.getFilename());
         if (uploadAvatarWidget.getFilename() != "") {
             avatarName = firstName.getText() + "_" + lastName.getText() + "_" + randomString + ".jpg";
         } else {
             avatarName = "";
         }
-//        Window.alert("Avatar Name: " + avatarName);
         Address address = new Address(street.getText(),streetNumber.getText(), city.getText(), postcode.getText());
         uploadAvatarWidget.setName(firstName.getText() + "_" + lastName.getText() + ".jpg");
         Profile profile = new Profile(null, firstName.getText(), lastName.getText(), emailAddress.getText(),

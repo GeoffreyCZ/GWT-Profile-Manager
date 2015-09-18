@@ -67,29 +67,82 @@ public class ConnectionConfiguration {
         }
     }
 
-//    public static Boolean searchInDB(Profile profile) {
-//        Connection connection;
-//        Statement statement;
-//        connection = getConnection();
-//        try {
-//            statement = connection.createStatement();
-//            String sql = "SELECT id, firstName, lastName, emailAddress, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + ";";
-//            ResultSet rs = statement.executeQuery(sql);
-//            while (rs.next()) {
-//                Profile profile = new Profile(rs.getString("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("emailAddress"), rs.getString("avatarURL"));
-//                listOfProfiles.add(profile);
-//            }
-//        } catch (SQLException se) {
-//            se.printStackTrace();
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return true;
-//    }
+    public static Boolean searchInDB(String email) {
+        Connection connection;
+        Statement statement;
+        connection = getConnection();
+        try {
+            statement = connection.createStatement();
+            String sql = "SELECT emailAddress FROM " + DB_NAME + "." + TABLE_NAME + " WHERE emailAddress = '" + email + "';";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                if (rs.getString("emailAddress").equals(email)) {
+                    return true;
+                }
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public static String getSalt(String email) {
+        Connection connection;
+        Statement statement;
+        connection = getConnection();
+        String salt = "";
+        try {
+            statement = connection.createStatement();
+            String sql = "SELECT salt FROM " + DB_NAME + "." + TABLE_NAME + " WHERE emailAddress = '" + email + "';";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                salt = rs.getString("salt");
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return salt;
+    }
+
+    public static Boolean searchLoginCredentials(Profile profile) {
+        Connection connection;
+        Statement statement;
+        connection = getConnection();
+        try {
+            statement = connection.createStatement();
+            String sql = "SELECT emailAddress, password FROM " + DB_NAME + "." + TABLE_NAME + " WHERE emailAddress = '"
+                    + profile.getEmailAddress() + "' AND password = '" + profile.getPassword() + "';";
+            ResultSet rs = statement.executeQuery(sql);
+            System.out.println(sql);
+            while (rs.next()) {
+                System.out.println(rs.getString("emailAddress") + " " + rs.getString("password"));
+                if (rs.getString("emailAddress").equals(profile.getEmailAddress())) {
+                    return true;
+                }
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 
     public static ArrayList<Profile> fetchAllProfilesFromDB() {
         ArrayList<Profile> listOfProfiles = new ArrayList<>();
@@ -98,7 +151,7 @@ public class ConnectionConfiguration {
         connection = getConnection();
         try {
             statement = connection.createStatement();
-            String sql = "SELECT id, firstName, lastName, emailAddress, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + ";";
+            String sql = "SELECT id, firstName, lastName, emailAddress, avatarURL FROM " + DB_NAME + "." + TABLE_NAME + " ORDER BY firstName ASC, lastName ASC;";
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 Profile profile = new Profile(rs.getString("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("emailAddress"), rs.getString("avatarURL"));

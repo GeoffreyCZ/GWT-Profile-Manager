@@ -52,7 +52,6 @@ public class CreateProfilePresenter implements Presenter {
                     action = null;
                 }
                 display.getFormPanel().setAction(action);
-//                Window.alert("bind: " + action);
                 display.getFormPanel().submit();
             }
         });
@@ -88,7 +87,6 @@ public class CreateProfilePresenter implements Presenter {
                 }
             });
         }
-
     }
 
     private boolean validate() {
@@ -98,7 +96,6 @@ public class CreateProfilePresenter implements Presenter {
         display.getPasswordMismatchErrorMessage().setText(null);
         display.getPhoneNumberErrorMessage().setText(null);
         display.getEmailErrorMessage().setText(null);
-        String email = display.getProfile().getEmailAddress();
 
         if (display.getProfile().getPassword().equals("")) {
             display.getPasswordErrorMessage().setText("Please enter your password!");
@@ -120,14 +117,16 @@ public class CreateProfilePresenter implements Presenter {
             display.getEmailErrorMessage().setText("Please enter valid email address!");
             valid = false;
         }
-//        rpcService.checkEmail(email, new AsyncCallback<Profile>() {
-//            public void onSuccess(Profile result) {
-//
-//            }
-//            public void onFailure(Throwable caught) {
-//                Window.alert("Error searching in database.");
-//            }
-//        });
+        rpcService.checkEmail(display.getProfile().getEmailAddress(), new AsyncCallback<Boolean>() {
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    display.getEmailErrorMessage().setText("Email is already registered!");
+                }
+            }
+            public void onFailure(Throwable caught) {
+                Window.alert("Error searching in database.");
+            }
+        });
         return valid;
     }
 

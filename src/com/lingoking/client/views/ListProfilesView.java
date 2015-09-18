@@ -27,7 +27,6 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
 
         contentTable = new FlexTable();
         contentTable.setWidth("100%");
-        contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListContainer");
         contentTable.getCellFormatter().setWidth(0, 0, "100%");
         contentTable.getFlexCellFormatter().setVerticalAlignment(0, 0, DockPanel.ALIGN_TOP);
 
@@ -39,7 +38,6 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         hPanel.add(createButton);
         deleteButton = new Button("Delete selected profiles");
         hPanel.add(deleteButton);
-        contentTable.getCellFormatter().addStyleName(0, 0, "profiles-ListMenu");
         contentTable.setWidget(0, 0, hPanel);
 
         profilesTable = new FlexTable();

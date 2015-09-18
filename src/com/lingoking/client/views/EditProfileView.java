@@ -80,8 +80,6 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         formUploadPanel.add(postcode);
         formUploadPanel.add(new Label("Profile picture"));
         formUploadPanel.add(uploadAvatarWidget);
-
-
         formUploadPanel.add(editButton);
         formUploadPanel.add(cancelButton);
 
@@ -99,18 +97,15 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         streetNumber.setText(profile.getAddress().getStreetNumber());
         city.setText(profile.getAddress().getCity());
         postcode.setText(profile.getAddress().getPostcode());
-//        uploadAvatarWidget
     }
 
     public Profile getProfile() {
         String avatarName;
-//        Window.alert("Filename: " + uploadAvatarWidget.getFilename());
         if (!uploadAvatarWidget.getFilename().equals("")) {
             avatarName = firstName.getText() + "_" + lastName.getText() + "_" + randomString + ".jpg";
         } else {
             avatarName = "";
         }
-        Window.alert("Avatar Name: " + avatarName);
         Address address = new Address(street.getText(),streetNumber.getText(), city.getText(), postcode.getText());
         uploadAvatarWidget.setName(firstName.getText() + "_" + lastName.getText() + ".jpg");
         Profile profile = new Profile(firstName.getText(), lastName.getText(), emailAddress.getText(), phoneNumber.getText(), address, avatarName);

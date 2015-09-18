@@ -84,7 +84,6 @@ public class ProfilePresenter implements Presenter {
                 Profile profile;
                 profile = result;
                 display.setData(profile);
-//                Window.alert("fetch profile");
             }
 
             public void onFailure(Throwable caught) {
@@ -93,9 +92,9 @@ public class ProfilePresenter implements Presenter {
         });
     }
 
-    private void deleteSelectedProfile(ArrayList<String> id) {
-        rpcService.deleteProfiles(id, new AsyncCallback<ArrayList<Profile>>() {
-            public void onSuccess(ArrayList<Profile> result) {
+    private void deleteSelectedProfile(List<String> id) {
+        rpcService.deleteProfiles(id, new AsyncCallback<List<Profile>>() {
+            public void onSuccess(List<Profile> result) {
                 eventBus.fireEvent(new ShowProfileListEvent());
             }
 

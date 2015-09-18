@@ -53,7 +53,6 @@ public class EditProfilePresenter implements Presenter {
                     action = null;
                 }
                 display.getFormPanel().setAction(action);
-//                Window.alert("bind: " + action);
                 display.getFormPanel().submit();
             }
         });

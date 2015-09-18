@@ -2,7 +2,9 @@ package com.lingoking.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.lingoking.client.ProfilesService;
 import com.lingoking.shared.model.Profile;
@@ -24,23 +26,31 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return profile;
     }
 
-    public ArrayList<Profile> getListOfProfiles() {
-        ArrayList<Profile> profiles;
+    public List<Profile> getListOfProfiles() {
+        List<Profile> profiles;
         profiles = ConnectionConfiguration.fetchAllProfilesFromDB();
         return profiles;
     }
 
-//    public Boolean login(Profile profile) {
-//        ConnectionConfiguration.searchInDB(profile);
-//        return true;
-//    }
+    public Boolean login(Profile profile) {
+        String hashedPassword;
+        String salt;
+        salt = ConnectionConfiguration.getSalt(profile.getEmailAddress());
+        hashedPassword = PasswordHash.getPassword(profile.getPassword(), salt);
+        profile.setPassword(hashedPassword);
+        return ConnectionConfiguration.searchLoginCredentials(profile);
+    }
+
+    public Boolean checkEmail(String email) {
+        return ConnectionConfiguration.searchInDB(email);
+    }
 
     public Boolean deleteProfiles(String id) {
         ConnectionConfiguration.deleteProfilesFromDB(id);
         return true;
     }
 
-    public ArrayList<Profile> deleteProfiles(ArrayList<String> ids) {
+    public List<Profile> deleteProfiles(List<String> ids) {
         for (int i = 0; i < ids.size(); ++i) {
             deleteProfiles(ids.get(i));
         }

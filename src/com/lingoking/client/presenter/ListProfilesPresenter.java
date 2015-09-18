@@ -14,8 +14,7 @@ import com.lingoking.client.events.CreateProfileEvent;
 import com.lingoking.client.events.ShowProfileEvent;
 import com.lingoking.shared.model.Profile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ListProfilesPresenter implements Presenter {
 
@@ -75,18 +74,6 @@ public class ListProfilesPresenter implements Presenter {
         fetchProfileList();
     }
 
-    public void sortProfileList() {
-        for (int i = 0; i < profile.size(); ++i) {
-            for (int j = 0; j < profile.size() - 1; ++j) {
-                if (profile.get(j).getWholeName().compareToIgnoreCase(profile.get(j + 1).getWholeName()) >= 0) {
-                    Profile tmp = profile.get(j);
-                    profile.set(j, profile.get(j + 1));
-                    profile.set(j + 1, tmp);
-                }
-            }
-        }
-    }
-
     public String getProfileId (String profileId) {
         return profileId;
     }
@@ -96,16 +83,10 @@ public class ListProfilesPresenter implements Presenter {
     }
 
     private void fetchProfileList() {
-        rpcService.getListOfProfiles(new AsyncCallback<ArrayList<Profile>>() {
-            public void onSuccess(ArrayList<Profile> result) {
+        rpcService.getListOfProfiles(new AsyncCallback<List<Profile>>() {
+            public void onSuccess(List<Profile> result) {
                 profile = result;
-                sortProfileList();
-                List<Profile> data = new ArrayList<>();
-
-                for (int i = 0; i < result.size(); ++i) {
-                    data.add(new Profile(profile.get(i).getId(), profile.get(i).getFirstName(), profile.get(i).getLastName(), profile.get(i).getEmailAddress(), profile.get(i).getAvatar()));
-                }
-                display.setData(data);
+                display.setData(result);
             }
             public void onFailure(Throwable caught) {
                 Window.alert("Error fetching profiles");
@@ -116,21 +97,14 @@ public class ListProfilesPresenter implements Presenter {
     private void deleteSelectedProfiles() {
         List<Integer> selectedRows = display.getSelectedRows();
         if (selectedRows.size() > 0) {
-            ArrayList<String> ids = new ArrayList<>();
+            List<String> ids = new ArrayList<>();
 
             for (int i = 0; i < selectedRows.size(); ++i) {
                 ids.add(profile.get(selectedRows.get(i)).getId());
             }
 
-            rpcService.deleteProfiles(ids, new AsyncCallback<ArrayList<Profile>>() {
-                public void onSuccess(ArrayList<Profile> result) {
-                    profile = result;
-                    sortProfileList();
-                    List<String> data = new ArrayList<>();
-
-                    for (int i = 0; i < result.size(); ++i) {
-                        data.add(profile.get(i).getWholeName());
-                    }
+            rpcService.deleteProfiles(ids, new AsyncCallback<List<Profile>>() {
+                public void onSuccess(List<Profile> result) {
                     fetchProfileList();
                 }
 
