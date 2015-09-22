@@ -3,4 +3,9 @@
 <properties>
     <entry key="maxFileSize">1024000000</entry>
     <entry key="maxMemSize">4096000</entry>
+    <entry key="dbUserName">root</entry>
+    <entry key="dbPassword">root</entry>
+    <entry key="dbIp">127.0.0.1</entry>
+    <entry key="dbName">profileDB</entry>
+    <entry key="tableName">profiles</entry>
 </properties>

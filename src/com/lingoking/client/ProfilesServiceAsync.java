@@ -4,11 +4,12 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lingoking.shared.model.ErrorMessages;
 import com.lingoking.shared.model.Profile;
 
 public interface ProfilesServiceAsync {
 
-    void createProfile(Profile profile, AsyncCallback<Profile> callback);
+    void createProfile(Profile profile, AsyncCallback<ErrorMessages> callback);
     void deleteProfiles(List<String> ids, AsyncCallback<List<Profile>> callback);
     void getListOfProfiles(AsyncCallback<List<Profile>> callback);
     void editProfile(String id, Profile profile, AsyncCallback<Profile> callback);

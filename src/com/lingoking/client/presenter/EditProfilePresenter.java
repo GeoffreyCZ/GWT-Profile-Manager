@@ -95,7 +95,7 @@ public class EditProfilePresenter implements Presenter {
         if (validate()) {
             rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
                 public void onSuccess(Profile result) {
-                    eventBus.fireEvent(new ProfileCreatedEvent(result));
+                    eventBus.fireEvent(new ProfileCreatedEvent());
                 }
 
                 public void onFailure(Throwable caught) {

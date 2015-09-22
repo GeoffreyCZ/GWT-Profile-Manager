@@ -23,11 +23,18 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
     private final Button createButton;
     private final Button cancelButton;
     private final FormPanel formPanel;
+    private final Label firstNameErrorMessage;
+    private final Label lastNameErrorMessage;
+    private final Label emailErrorMessage;
     private final Label passwordErrorMessage;
     private final Label passwordAgainErrorMessage;
     private final Label passwordMismatchErrorMessage;
     private final Label phoneNumberErrorMessage;
-    private final Label emailErrorMessage;
+    private final Label streetErrorMessage;
+    private final Label streetNumberErrorMessage;
+    private final Label cityErrorMessage;
+    private final Label postcodeErrorMessage;
+
     private String randomString;
 
     public CreateProfileView() {
@@ -58,20 +65,42 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         city = new TextBox();
         postcode = new TextBox();
 
+        firstNameErrorMessage = new Label();
+        lastNameErrorMessage = new Label();
+        emailErrorMessage = new Label();
         passwordErrorMessage = new Label();
         passwordAgainErrorMessage = new Label();
         passwordMismatchErrorMessage = new Label();
         phoneNumberErrorMessage = new Label();
-        emailErrorMessage = new Label();
+        streetErrorMessage = new Label();
+        streetNumberErrorMessage = new Label();
+        cityErrorMessage = new Label();
+        postcodeErrorMessage = new Label();
+
+        firstNameErrorMessage.addStyleName("errorMessage");
+        lastNameErrorMessage.addStyleName("errorMessage");
+        emailErrorMessage.addStyleName("errorMessage");
+        passwordErrorMessage.addStyleName("errorMessage");
+        passwordAgainErrorMessage.addStyleName("errorMessage");
+        passwordMismatchErrorMessage.addStyleName("errorMessage");
+        phoneNumberErrorMessage.addStyleName("errorMessage");
+        streetErrorMessage.addStyleName("errorMessage");
+        streetNumberErrorMessage.addStyleName("errorMessage");
+        cityErrorMessage.addStyleName("errorMessage");
+        postcodeErrorMessage.addStyleName("errorMessage");
 
         uploadAvatarWidget = new FileUpload();
+        uploadAvatarWidget.getElement().setAttribute("accept", "image/*");
+
         createButton = new Button("Create");
         cancelButton = new Button("Cancel");
 
         formUploadPanel.add(new Label("First name"));
         formUploadPanel.add(firstName);
+        formUploadPanel.add(firstNameErrorMessage);
         formUploadPanel.add(new Label("Last name"));
         formUploadPanel.add(lastName);
+        formUploadPanel.add(lastNameErrorMessage);
         formUploadPanel.add(new Label("Email Address"));
         formUploadPanel.add(emailAddress);
         formUploadPanel.add(emailErrorMessage);
@@ -87,16 +116,18 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         formUploadPanel.add(phoneNumberErrorMessage);
         formUploadPanel.add(new Label("Street"));
         formUploadPanel.add(street);
+        formUploadPanel.add(streetErrorMessage);
         formUploadPanel.add(new Label("Street Number"));
         formUploadPanel.add(streetNumber);
+        formUploadPanel.add(streetNumberErrorMessage);
         formUploadPanel.add(new Label("City"));
         formUploadPanel.add(city);
+        formUploadPanel.add(cityErrorMessage);
         formUploadPanel.add(new Label("Postcode"));
         formUploadPanel.add(postcode);
+        formUploadPanel.add(postcodeErrorMessage);
         formUploadPanel.add(new Label("Profile picture"));
         formUploadPanel.add(uploadAvatarWidget);
-
-
         formUploadPanel.add(createButton);
         formUploadPanel.add(cancelButton);
 
@@ -107,7 +138,7 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
 
     public Profile getProfile() {
         String avatarName;
-        if (uploadAvatarWidget.getFilename() != "") {
+        if (!uploadAvatarWidget.getFilename().equals("")) {
             avatarName = firstName.getText() + "_" + lastName.getText() + "_" + randomString + ".jpg";
         } else {
             avatarName = "";
@@ -117,6 +148,18 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         Profile profile = new Profile(null, firstName.getText(), lastName.getText(), emailAddress.getText(),
                 password.getText(), passwordAgain.getText(), phoneNumber.getText(), address, avatarName);
         return profile;
+    }
+
+    public Label getFirstNameErrorMessage() {
+        return firstNameErrorMessage;
+    }
+
+    public Label getLastNameErrorMessage() {
+        return lastNameErrorMessage;
+    }
+
+    public Label getEmailErrorMessage() {
+        return emailErrorMessage;
     }
 
     public Label getPasswordErrorMessage() {
@@ -135,9 +178,22 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         return phoneNumberErrorMessage;
     }
 
-    public Label getEmailErrorMessage() {
-        return emailErrorMessage;
+    public Label getStreetErrorMessage() {
+        return streetErrorMessage;
     }
+
+    public Label getStreetNumberErrorMessage() {
+        return streetNumberErrorMessage;
+    }
+
+    public Label getCityErrorMessage() {
+        return cityErrorMessage;
+    }
+
+    public Label getPostcodeErrorMessage() {
+        return postcodeErrorMessage;
+    }
+
 
     public HasClickHandlers getCreateButton() {
         return createButton;

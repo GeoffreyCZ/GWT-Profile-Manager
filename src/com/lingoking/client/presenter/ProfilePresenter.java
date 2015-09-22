@@ -7,22 +7,17 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
-import com.lingoking.client.events.CreateProfileCancelledEvent;
 import com.lingoking.client.events.EditProfileEvent;
-import com.lingoking.client.events.ProfileCreatedEvent;
 import com.lingoking.client.events.ShowProfileListEvent;
 import com.lingoking.shared.model.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Michal on 31. 8. 2015.
- */
 public class ProfilePresenter implements Presenter {
 
     public interface Display {

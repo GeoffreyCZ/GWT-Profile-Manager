@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UploadServlet extends HttpServlet {
 
-    public static final String PATH_TO_FILE = "images/";
+    public static final String IMAGES_DIRECTORY = "images/";
     public static final String TEMP_DIRECTORY = "tmp/";
 
     private int maxFileSize;
@@ -64,7 +64,7 @@ public class UploadServlet extends HttpServlet {
                 FileItem fi = (FileItem)i.next();
                 // Checks if there is uploaded file or form field in input
                 if (!fi.isFormField()) {
-                    file = new File(PATH_TO_FILE, file_name);
+                    file = new File(IMAGES_DIRECTORY, file_name);
                     fi.write(file);
                     System.out.println("Your file has been uploaded.");
                 }

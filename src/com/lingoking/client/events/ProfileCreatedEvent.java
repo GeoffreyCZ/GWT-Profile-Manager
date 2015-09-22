@@ -8,13 +8,13 @@ import com.lingoking.shared.model.Profile;
  */
 public class ProfileCreatedEvent extends GwtEvent<ProfileCreatedEventHandler>{
     public static Type<ProfileCreatedEventHandler> TYPE = new Type<ProfileCreatedEventHandler>();
-    private final Profile createdProfile;
+//    private final Profile createdProfile;
 
-    public ProfileCreatedEvent(Profile updatedProfile) {
-        this.createdProfile = updatedProfile;
-    }
-
-    public Profile getCreatedProfile() { return createdProfile; }
+//    public ProfileCreatedEvent(Profile updatedProfile) {
+//        this.createdProfile = updatedProfile;
+//    }
+//
+//    public Profile getCreatedProfile() { return createdProfile; }
 
 
     @Override

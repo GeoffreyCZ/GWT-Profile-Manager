@@ -6,7 +6,6 @@ import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.ListProfilesPresenter;
 import com.lingoking.server.UploadServlet;
 import com.lingoking.shared.model.Profile;
-import com.reveregroup.gwt.imagepreloader.FitImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
     private final Button deleteButton;
     private FlexTable profilesTable;
     private final FlexTable contentTable;
-    FitImage avatarImage = new FitImage();
+    Image avatarImage = new Image();
 
     public ListProfilesView() {
         DecoratorPanel contentTableDecorator = new DecoratorPanel();
@@ -61,13 +60,12 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
     public void setData(List<Profile> data) {
         profilesTable.removeAllRows();
         for (int i = 0; i < data.size(); ++i) {
-            avatarImage = new FitImage();
-            if (data.get(i).getAvatar() == "") {
+            avatarImage = new Image();
+            if (data.get(i).getAvatar().equals("")) {
                 avatarImage.setUrl("lib/avatar.jpg");
             } else {
-                avatarImage.setUrl(UploadServlet.PATH_TO_FILE + data.get(i).getAvatar());
+                avatarImage.setUrl(UploadServlet.IMAGES_DIRECTORY + "thumb_" + data.get(i).getAvatar());
             }
-            avatarImage.setMaxSize(90, 90);
             profilesTable.setWidget(i, 0, new CheckBox());
             profilesTable.setWidget(i, 1, avatarImage);
             profilesTable.setText(i, 2, data.get(i).getFirstName());

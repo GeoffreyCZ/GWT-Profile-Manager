@@ -3,6 +3,7 @@ package com.lingoking.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.lingoking.shared.model.ErrorMessages;
 import com.lingoking.shared.model.Profile;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 @RemoteServiceRelativePath("profilesService")
 public interface ProfilesService extends RemoteService {
 
-    Profile createProfile(Profile profile);
+    ErrorMessages createProfile(Profile profile);
     List<Profile> deleteProfiles(List<String> ids);
     List<Profile> getListOfProfiles();
     Profile editProfile(String id, Profile profile);
