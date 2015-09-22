@@ -31,9 +31,16 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return errorMessages;
     }
 
-    public Profile editProfile(String id, Profile profile) {
-        profile = ConnectionConfiguration.editProfileInDB(id, profile);
-        return profile;
+    public ErrorMessages editProfile(String id, Profile profile) {
+        if (validate(profile)) {
+            profile = ConnectionConfiguration.editProfileInDB(id, profile);
+            try {
+                ImageResize.createThumbnail(profile);
+            } catch (IOException ioe) {
+                System.out.println(ioe);
+            }
+        }
+        return errorMessages;
     }
 
     public List<Profile> getListOfProfiles() {

@@ -71,6 +71,15 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         cityErrorMessage = new Label();
         postcodeErrorMessage = new Label();
 
+        firstNameErrorMessage.addStyleName("errorMessage");
+        lastNameErrorMessage.addStyleName("errorMessage");
+        emailErrorMessage.addStyleName("errorMessage");
+        phoneNumberErrorMessage.addStyleName("errorMessage");
+        streetErrorMessage.addStyleName("errorMessage");
+        streetNumberErrorMessage.addStyleName("errorMessage");
+        cityErrorMessage.addStyleName("errorMessage");
+        postcodeErrorMessage.addStyleName("errorMessage");
+
         editButton = new Button("Finish");
         cancelButton = new Button("Cancel");
 

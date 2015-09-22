@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
 import com.lingoking.client.events.CreateProfileCancelledEvent;
 import com.lingoking.client.events.ProfileCreatedEvent;
+import com.lingoking.shared.model.ErrorMessages;
 import com.lingoking.shared.model.Profile;
 
 public class EditProfilePresenter implements Presenter {
@@ -114,14 +115,46 @@ public class EditProfilePresenter implements Presenter {
     private void doEdit() {
         profile = display.getProfile();
 
-        rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
-            public void onSuccess(Profile result) {
-                eventBus.fireEvent(new ProfileCreatedEvent());
+        rpcService.editProfile(profileId, profile, new AsyncCallback<ErrorMessages>() {
+            public void onSuccess(ErrorMessages result) {
+                if (result.isValid()) {
+                    eventBus.fireEvent(new ProfileCreatedEvent());
+                } else {
+                    setErrorMessages(result);
+                }
             }
+
             public void onFailure(Throwable caught) {
                 Window.alert("Error editing the profile.");
             }
         });
+    }
+
+    private void setErrorMessages(ErrorMessages errorMessages) {
+        if (!errorMessages.getFirstNameError().equals(null)) {
+            display.getFirstNameErrorMessage().setText(errorMessages.getFirstNameError());
+        }
+        if (!errorMessages.getLastNameError().equals(null)) {
+            display.getLastNameErrorMessage().setText(errorMessages.getLastNameError());
+        }
+        if (!errorMessages.getEmailError().equals(null)) {
+            display.getEmailErrorMessage().setText(errorMessages.getEmailError());
+        }
+        if (!errorMessages.getPhoneNumberError().equals(null)) {
+            display.getPhoneNumberErrorMessage().setText(errorMessages.getPhoneNumberError());
+        }
+        if (!errorMessages.getStreetError().equals(null)) {
+            display.getStreetErrorMessage().setText(errorMessages.getStreetError());
+        }
+        if (!errorMessages.getStreetNumberError().equals(null)) {
+            display.getStreetNumberErrorMessage().setText(errorMessages.getStreetNumberError());
+        }
+        if (!errorMessages.getCityError().equals(null)) {
+            display.getCityErrorMessage().setText(errorMessages.getCityError());
+        }
+        if (!errorMessages.getPostcodeError().equals(null)) {
+            display.getPostcodeErrorMessage().setText(errorMessages.getPostcodeError());
+        }
     }
 
     private void validate(final AsyncCallback<Boolean> onComplete) {

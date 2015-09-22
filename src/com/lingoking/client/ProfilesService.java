@@ -15,7 +15,7 @@ public interface ProfilesService extends RemoteService {
     ErrorMessages createProfile(Profile profile);
     List<Profile> deleteProfiles(List<String> ids);
     List<Profile> getListOfProfiles();
-    Profile editProfile(String id, Profile profile);
+    ErrorMessages editProfile(String id, Profile profile);
     Profile fetchProfile(String id);
     Boolean login(Profile profile);
     Boolean checkEmail(String email);
