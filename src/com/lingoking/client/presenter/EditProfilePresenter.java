@@ -24,10 +24,17 @@ public class EditProfilePresenter implements Presenter {
         Widget asWidget();
         void setProfile(Profile profile);
         Profile getProfile();
-        Label getPhoneNumberErrorMessage();
+        Label getFirstNameErrorMessage();
+        Label getLastNameErrorMessage();
         Label getEmailErrorMessage();
+        Label getPhoneNumberErrorMessage();
+        Label getStreetErrorMessage();
+        Label getStreetNumberErrorMessage();
+        Label getCityErrorMessage();
+        Label getPostcodeErrorMessage();
     }
 
+    private boolean valid;
     private Profile profile;
     private final ProfilesServiceAsync rpcService;
     private final HandlerManager eventBus;
@@ -59,7 +66,21 @@ public class EditProfilePresenter implements Presenter {
 
         this.display.getFormPanel().addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
             public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
-                doEdit();
+                AsyncCallback<Boolean> onComplete = new AsyncCallback<Boolean>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        Window.alert("Validation error!");
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean valid) {
+                        if (valid) {
+                            doEdit();
+                        }
+                    }
+                };
+
+                validate(onComplete);
             }
         });
 
@@ -92,33 +113,70 @@ public class EditProfilePresenter implements Presenter {
 
     private void doEdit() {
         profile = display.getProfile();
-        if (validate()) {
-            rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
-                public void onSuccess(Profile result) {
-                    eventBus.fireEvent(new ProfileCreatedEvent());
-                }
 
-                public void onFailure(Throwable caught) {
-                    Window.alert("Error editing the profile.");
-                }
-            });
-        }
+        rpcService.editProfile(profileId, profile, new AsyncCallback<Profile>() {
+            public void onSuccess(Profile result) {
+                eventBus.fireEvent(new ProfileCreatedEvent());
+            }
+            public void onFailure(Throwable caught) {
+                Window.alert("Error editing the profile.");
+            }
+        });
     }
 
-    private boolean validate() {
-        boolean valid = true;
-        display.getPhoneNumberErrorMessage().setText(null);
-        display.getEmailErrorMessage().setText(null);
+    private void validate(final AsyncCallback<Boolean> onComplete) {
+        valid = true;
 
-        if (display.getProfile().getPhoneNumber().equals("")) {
-            display.getPhoneNumberErrorMessage().setText("Please enter valid phone number!");
+        if (display.getProfile().getFirstName().length() > 45) {
+            display.getFirstNameErrorMessage().setText("Your first name is too long!");
+            valid = false;
+        }
+        if (display.getProfile().getLastName().length() > 45) {
+            display.getLastNameErrorMessage().setText("Your last name is too long!");
             valid = false;
         }
         if (!display.getProfile().getEmailAddress().matches(CreateProfilePresenter.EMAIL_PATTERN)) {
             display.getEmailErrorMessage().setText("Please enter valid email address!");
             valid = false;
         }
-        return valid;
+        if (display.getProfile().getPhoneNumber().equals("")) {
+            display.getPhoneNumberErrorMessage().setText("Please enter phone number!");
+            valid = false;
+        }
+        if (display.getProfile().getPhoneNumber().length() > 20) {
+            display.getPhoneNumberErrorMessage().setText("Your phone number is too long!");
+            valid = false;
+        }
+        if (display.getProfile().getAddress().getStreet().length() > 45) {
+            display.getStreetErrorMessage().setText("Your street is too long!");
+            valid = false;
+        }
+        if (display.getProfile().getAddress().getStreetNumber().length() > 10) {
+            display.getStreetNumberErrorMessage().setText("Your street number is too long!");
+            valid = false;
+        }
+        if (display.getProfile().getAddress().getCity().length() > 45) {
+            display.getCityErrorMessage().setText("Your city name is too long!");
+            valid = false;
+        }
+        if (display.getProfile().getAddress().getPostcode().length() > 10) {
+            display.getPostcodeErrorMessage().setText("Your postcode is too long!");
+            valid = false;
+        }
+
+        rpcService.checkEmail(display.getProfile().getEmailAddress(), new AsyncCallback<Boolean>() {
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    display.getEmailErrorMessage().setText("Email is already registered!");
+                    valid = false;
+                }
+                onComplete.onSuccess(valid);
+            }
+            public void onFailure(Throwable caught) {
+                Window.alert("Error searching in database.");
+                onComplete.onFailure(caught);
+            }
+        });
     }
 
 }

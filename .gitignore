@@ -4,6 +4,7 @@ Thumbs.db
  
 # Jetbrains project 
 .idea/ 
+ProfileManagement.iml
  
 # Library is a sub-repository 
 Library/

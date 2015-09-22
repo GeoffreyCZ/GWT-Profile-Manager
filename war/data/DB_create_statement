@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS profiledb /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_czech_ci */;
+
+CREATE TABLE `profiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+  `emailAddress` varchar(45) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `phoneNumber` varchar(20) NOT NULL,
+  `street` varchar(45) DEFAULT NULL,
+  `streetNumber` varchar(10) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `postcode` varchar(10) DEFAULT NULL,
+  `avatarURL` varchar(100) DEFAULT NULL,
+  `salt` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `emailAddress_UNIQUE` (`emailAddress`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;

@@ -26,8 +26,14 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
     private final Button cancelButton;
     private String randomString;
     private final FormPanel formPanel;
-    private final Label phoneNumberErrorMessage;
+    private final Label firstNameErrorMessage;
+    private final Label lastNameErrorMessage;
     private final Label emailErrorMessage;
+    private final Label phoneNumberErrorMessage;
+    private final Label streetErrorMessage;
+    private final Label streetNumberErrorMessage;
+    private final Label cityErrorMessage;
+    private final Label postcodeErrorMessage;
 
     public EditProfileView() {
 
@@ -55,15 +61,25 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         city = new TextBox();
         postcode = new TextBox();
         uploadAvatarWidget = new FileUpload();
-        phoneNumberErrorMessage = new Label();
+
+        firstNameErrorMessage = new Label();
+        lastNameErrorMessage = new Label();
         emailErrorMessage = new Label();
+        phoneNumberErrorMessage = new Label();
+        streetErrorMessage = new Label();
+        streetNumberErrorMessage = new Label();
+        cityErrorMessage = new Label();
+        postcodeErrorMessage = new Label();
+
         editButton = new Button("Finish");
         cancelButton = new Button("Cancel");
 
         formUploadPanel.add(new Label("First name"));
         formUploadPanel.add(firstName);
+        formUploadPanel.add(firstNameErrorMessage);
         formUploadPanel.add(new Label("Last name"));
         formUploadPanel.add(lastName);
+        formUploadPanel.add(lastNameErrorMessage);
         formUploadPanel.add(new Label("Email Address"));
         formUploadPanel.add(emailAddress);
         formUploadPanel.add(emailErrorMessage);
@@ -72,12 +88,16 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         formUploadPanel.add(phoneNumberErrorMessage);
         formUploadPanel.add(new Label("Street"));
         formUploadPanel.add(street);
+        formUploadPanel.add(streetErrorMessage);
         formUploadPanel.add(new Label("Street Number"));
         formUploadPanel.add(streetNumber);
+        formUploadPanel.add(streetNumberErrorMessage);
         formUploadPanel.add(new Label("City"));
         formUploadPanel.add(city);
+        formUploadPanel.add(cityErrorMessage);
         formUploadPanel.add(new Label("Postcode"));
         formUploadPanel.add(postcode);
+        formUploadPanel.add(postcodeErrorMessage);
         formUploadPanel.add(new Label("Profile picture"));
         formUploadPanel.add(uploadAvatarWidget);
         formUploadPanel.add(editButton);
@@ -112,12 +132,36 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
         return profile;
     }
 
-    public Label getPhoneNumberErrorMessage() {
-        return phoneNumberErrorMessage;
+    public Label getFirstNameErrorMessage() {
+        return firstNameErrorMessage;
+    }
+
+    public Label getLastNameErrorMessage() {
+        return lastNameErrorMessage;
     }
 
     public Label getEmailErrorMessage() {
         return emailErrorMessage;
+    }
+
+    public Label getPhoneNumberErrorMessage() {
+        return phoneNumberErrorMessage;
+    }
+
+    public Label getStreetErrorMessage() {
+        return streetErrorMessage;
+    }
+
+    public Label getStreetNumberErrorMessage() {
+        return streetNumberErrorMessage;
+    }
+
+    public Label getCityErrorMessage() {
+        return cityErrorMessage;
+    }
+
+    public Label getPostcodeErrorMessage() {
+        return postcodeErrorMessage;
     }
 
     public FormPanel getFormPanel() {

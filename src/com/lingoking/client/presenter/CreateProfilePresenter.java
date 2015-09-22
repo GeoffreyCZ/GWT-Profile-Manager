@@ -100,19 +100,18 @@ public class CreateProfilePresenter implements Presenter {
     private void doCreate() {
         profile = display.getProfile();
 
-            rpcService.createProfile(profile, new AsyncCallback<ErrorMessages>() {
-                public void onSuccess(ErrorMessages result) {
-                    if (result.isValid()) {
-                        eventBus.fireEvent(new ProfileCreatedEvent());
-                    } else {
-                        setErrorMessages(result);
-                    }
+        rpcService.createProfile(profile, new AsyncCallback<ErrorMessages>() {
+            public void onSuccess(ErrorMessages result) {
+                if (result.isValid()) {
+                    eventBus.fireEvent(new ProfileCreatedEvent());
+                } else {
+                    setErrorMessages(result);
                 }
-
-                public void onFailure(Throwable caught) {
-                    Window.alert("Error creating profile.");
-                }
-            });
+            }
+            public void onFailure(Throwable caught) {
+                Window.alert("Error creating profile.");
+            }
+        });
 
     }
 
