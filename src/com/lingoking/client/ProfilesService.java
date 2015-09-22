@@ -18,7 +18,7 @@ public interface ProfilesService extends RemoteService {
     ErrorMessages editProfile(String id, Profile profile);
     Profile fetchProfile(String id);
     Boolean login(Profile profile);
-    Boolean checkEmail(String email);
+    Boolean checkEmail(String id, String email);
 
     class App {
         private static ProfilesServiceAsync ourInstance = GWT.create(ProfilesService.class);

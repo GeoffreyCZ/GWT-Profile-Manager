@@ -15,6 +15,6 @@ public interface ProfilesServiceAsync {
     void editProfile(String id, Profile profile, AsyncCallback<ErrorMessages> callback);
     void fetchProfile(String id, AsyncCallback<Profile> callback);
     void login(Profile profile, AsyncCallback<Boolean> callback);
-    void checkEmail(String email, AsyncCallback<Boolean> callback);
+    void checkEmail(String id, String email, AsyncCallback<Boolean> callback);
 }
 

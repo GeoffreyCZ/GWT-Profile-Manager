@@ -218,7 +218,7 @@ public class CreateProfilePresenter implements Presenter {
             valid = false;
         }
 
-        rpcService.checkEmail(display.getProfile().getEmailAddress(), new AsyncCallback<Boolean>() {
+        rpcService.checkEmail(null, display.getProfile().getEmailAddress(), new AsyncCallback<Boolean>() {
             public void onSuccess(Boolean result) {
                 if (result) {
                     display.getEmailErrorMessage().setText("Email is already registered!");

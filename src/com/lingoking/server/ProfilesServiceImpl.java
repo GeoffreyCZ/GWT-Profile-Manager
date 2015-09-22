@@ -21,7 +21,7 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
 
     public ErrorMessages createProfile(Profile profile) {
         errorMessages = new ErrorMessages();
-        if (validateCreation(profile)) {
+        if (validateCreateProfile(profile)) {
             ConnectionConfiguration.insertIntoDB(profile);
             try {
                 ImageResize.createThumbnail(profile);
@@ -34,7 +34,7 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
 
     public ErrorMessages editProfile(String id, Profile profile) {
         errorMessages = new ErrorMessages();
-        if (validateEditing(profile)) {
+        if (validateEditProfile(profile)) {
             ConnectionConfiguration.editProfileInDB(id, profile);
             try {
                 ImageResize.createThumbnail(profile);
@@ -60,8 +60,8 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return ConnectionConfiguration.searchLoginCredentials(profile);
     }
 
-    public Boolean checkEmail(String email) {
-        return ConnectionConfiguration.searchInDB(email);
+    public Boolean checkEmail(String id, String email) {
+        return ConnectionConfiguration.searchInDB(id, email);
     }
 
     public Boolean deleteProfiles(String id) {
@@ -82,7 +82,7 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return profile;
     }
 
-    private boolean validateCreation(Profile profile) {
+    private boolean validateCreateProfile(Profile profile) {
         errorMessages.setValid(true);
         if (profile.getFirstName().length() > 45) {
             errorMessages.setFirstNameError("Your first name is too long!");
@@ -137,7 +137,7 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return errorMessages.isValid();
     }
 
-    private boolean validateEditing(Profile profile) {
+    private boolean validateEditProfile(Profile profile) {
         errorMessages.setValid(true);
         if (profile.getFirstName().length() > 45) {
             errorMessages.setFirstNameError("Your first name is too long!");

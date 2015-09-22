@@ -70,13 +70,14 @@ public class ConnectionConfiguration {
         }
     }
 
-    public static Boolean searchInDB(String email) {
+    public static Boolean searchInDB(String id, String email) {
         Connection connection;
         Statement statement;
         connection = getConnection();
         try {
             statement = connection.createStatement();
-            String sql = "SELECT emailAddress FROM " + dbName + "." + tableName + " WHERE emailAddress = '" + email + "';";
+            String sql = "SELECT emailAddress FROM " + dbName + "." + tableName + " WHERE emailAddress = '"
+                    + email + "' AND id != '" + id + "';";
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 if (rs.getString("emailAddress").equals(email)) {
