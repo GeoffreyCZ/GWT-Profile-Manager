@@ -194,7 +194,6 @@ public class CreateProfileView extends Composite implements CreateProfilePresent
         return postcodeErrorMessage;
     }
 
-
     public HasClickHandlers getCreateButton() {
         return createButton;
     }
