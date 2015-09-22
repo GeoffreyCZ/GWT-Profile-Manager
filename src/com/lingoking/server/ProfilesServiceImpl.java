@@ -14,13 +14,14 @@ import com.lingoking.shared.model.Profile;
 public class ProfilesServiceImpl extends RemoteServiceServlet implements
         ProfilesService {
 
-    ErrorMessages errorMessages = new ErrorMessages();
+    ErrorMessages errorMessages;
 
     public ProfilesServiceImpl() {
     }
 
     public ErrorMessages createProfile(Profile profile) {
-        if (validate(profile)) {
+        errorMessages = new ErrorMessages();
+        if (validateCreation(profile)) {
             ConnectionConfiguration.insertIntoDB(profile);
             try {
                 ImageResize.createThumbnail(profile);
@@ -32,8 +33,9 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
     }
 
     public ErrorMessages editProfile(String id, Profile profile) {
-        if (validate(profile)) {
-            profile = ConnectionConfiguration.editProfileInDB(id, profile);
+        errorMessages = new ErrorMessages();
+        if (validateEditing(profile)) {
+            ConnectionConfiguration.editProfileInDB(id, profile);
             try {
                 ImageResize.createThumbnail(profile);
             } catch (IOException ioe) {
@@ -80,7 +82,7 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return profile;
     }
 
-    private boolean validate(Profile profile) {
+    private boolean validateCreation(Profile profile) {
         errorMessages.setValid(true);
         if (profile.getFirstName().length() > 45) {
             errorMessages.setFirstNameError("Your first name is too long!");
@@ -106,6 +108,47 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         }
         if (!profile.getPassword().equals(profile.getPasswordAgain())) {
             errorMessages.setPasswordMismatchError("Passwords don't match!");
+            errorMessages.setValid(false);
+        }
+        if (profile.getPhoneNumber().equals("")) {
+            errorMessages.setPhoneNumberError("Please enter phone number!");
+            errorMessages.setValid(false);
+        }
+        if (profile.getPhoneNumber().length() > 20) {
+            errorMessages.setPhoneNumberError("Your phone number is too long!");
+            errorMessages.setValid(false);
+        }
+        if (profile.getAddress().getStreet().length() > 45) {
+            errorMessages.setStreetError("Your street is too long!");
+            errorMessages.setValid(false);
+        }
+        if (profile.getAddress().getStreetNumber().length() > 10) {
+            errorMessages.setStreetNumberError("Your street number is too long!");
+            errorMessages.setValid(false);
+        }
+        if (profile.getAddress().getCity().length() > 45) {
+            errorMessages.setCityError("Your city name is too long!");
+            errorMessages.setValid(false);
+        }
+        if (profile.getAddress().getPostcode().length() > 10) {
+            errorMessages.setPostcodeError("Your postcode is too long!");
+            errorMessages.setValid(false);
+        }
+        return errorMessages.isValid();
+    }
+
+    private boolean validateEditing(Profile profile) {
+        errorMessages.setValid(true);
+        if (profile.getFirstName().length() > 45) {
+            errorMessages.setFirstNameError("Your first name is too long!");
+            errorMessages.setValid(false);
+        }
+        if (profile.getLastName().length() > 45) {
+            errorMessages.setLastNameError("Your last name is too long!");
+            errorMessages.setValid(false);
+        }
+        if (!profile.getEmailAddress().matches(CreateProfilePresenter.EMAIL_PATTERN)) {
+            errorMessages.setEmailError("Please enter valid email address!");
             errorMessages.setValid(false);
         }
         if (profile.getPhoneNumber().equals("")) {
