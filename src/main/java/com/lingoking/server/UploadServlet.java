@@ -25,7 +25,7 @@ public class UploadServlet extends HttpServlet {
     private final static String MAX_FILE_SIZE = "maxFileSize";
     private final static String MAX_MEMORY_SIZE = "maxMemSize";
 
-    public void init( ){
+    public void init() {
 
         LoadProperties loadProperties = new LoadProperties();
         maxFileSize = Integer.parseInt(loadProperties.get(MAX_FILE_SIZE));

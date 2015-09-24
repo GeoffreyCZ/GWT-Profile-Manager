@@ -2,6 +2,9 @@ package com.lingoking.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -9,6 +12,7 @@ import com.lingoking.client.ProfilesService;
 import com.lingoking.client.presenter.CreateProfilePresenter;
 import com.lingoking.shared.model.ErrorMessages;
 import com.lingoking.shared.model.Profile;
+import org.apache.commons.codec.binary.Base64;
 
 @SuppressWarnings("serial")
 public class ProfilesServiceImpl extends RemoteServiceServlet implements
@@ -48,7 +52,29 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
     public List<Profile> getListOfProfiles() {
         List<Profile> profiles;
         profiles = ConnectionConfiguration.fetchAllProfilesFromDB();
+        for (int i = 0; i < profiles.size(); ++i) {
+            if (!profiles.get(i).getAvatar().equals("")) {
+                File file = new File(UploadServlet.IMAGES_DIRECTORY + "thumb_" + profiles.get(i).getAvatar());
+                profiles.get(i).setImageString(imageToString(file));
+            }
+        }
         return profiles;
+    }
+
+    private String imageToString(File file) {
+        String imageDataString = "";
+        try {
+            FileInputStream imageInFile = new FileInputStream(file);
+            byte imageData[] = new byte[(int) file.length()];
+            imageInFile.read(imageData);
+            imageDataString = Base64.encodeBase64String(imageData);
+            imageInFile.close();
+            System.out.println("Image "+ file.getName() +" Successfully Manipulated!");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return imageDataString;
+
     }
 
     public Boolean login(Profile profile) {

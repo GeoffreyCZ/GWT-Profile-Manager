@@ -2,9 +2,9 @@ package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.ListProfilesPresenter;
-import com.lingoking.server.UploadServlet;
 import com.lingoking.shared.model.Profile;
 
 import java.util.ArrayList;
@@ -22,7 +22,6 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         initWidget(contentTableDecorator);
         contentTableDecorator.setWidth("100%");
         contentTableDecorator.setWidth("18em");
-
 
         contentTable = new FlexTable();
         contentTable.setWidth("100%");
@@ -57,20 +56,20 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         return deleteButton;
     }
 
-    public void setData(List<Profile> data) {
+    public void setData(List<Profile> profiles) {
         profilesTable.removeAllRows();
-        for (int i = 0; i < data.size(); ++i) {
+        for (int i = 0; i < profiles.size(); ++i) {
             avatarImage = new Image();
-            if (data.get(i).getAvatar().equals("")) {
+            if (profiles.get(i).getAvatar().equals("")) {
                 avatarImage.setUrl("lib/avatar.jpg");
             } else {
-                avatarImage.setUrl(UploadServlet.IMAGES_DIRECTORY + "thumb_" + data.get(i).getAvatar());
+                avatarImage.setUrl("data:image/jpeg;base64," + profiles.get(i).getImageString());
             }
             profilesTable.setWidget(i, 0, new CheckBox());
             profilesTable.setWidget(i, 1, avatarImage);
-            profilesTable.setText(i, 2, data.get(i).getFirstName());
-            profilesTable.setText(i, 3, data.get(i).getLastName());
-            profilesTable.setText(i, 4, data.get(i).getEmailAddress());
+            profilesTable.setText(i, 2, profiles.get(i).getFirstName());
+            profilesTable.setText(i, 3, profiles.get(i).getLastName());
+            profilesTable.setText(i, 4, profiles.get(i).getEmailAddress());
         }
     }
 

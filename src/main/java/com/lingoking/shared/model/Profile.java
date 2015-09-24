@@ -1,7 +1,5 @@
 package com.lingoking.shared.model;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 import java.io.Serializable;
 
 public class Profile implements Serializable {
@@ -11,11 +9,12 @@ public class Profile implements Serializable {
     private String lastName;
     private String emailAddress;
     private String password;
-
     private String passwordAgain;
     private String phoneNumber;
     private Address address;
     private String avatar;
+
+    private String imageString;
 
     public Profile() {
     }
@@ -85,8 +84,6 @@ public class Profile implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getWholeName() {return firstName + " " + lastName;}
-
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -133,5 +130,14 @@ public class Profile implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+
+    public String getImageString() {
+        return imageString;
+    }
+
+    public void setImageString(String imageString) {
+        this.imageString = imageString;
     }
 }
