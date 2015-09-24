@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact name="ProfileManagement:GWT">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProfileManagement_GWT</output-path>
+    <root id="root">
+      <element id="gwt-compiler-output" facet="ProfileManagement/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
