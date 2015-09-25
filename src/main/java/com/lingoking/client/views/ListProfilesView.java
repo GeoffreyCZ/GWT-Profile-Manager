@@ -2,7 +2,6 @@ package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.ListProfilesPresenter;
 import com.lingoking.shared.model.Profile;
@@ -16,6 +15,10 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
     private FlexTable profilesTable;
     private final FlexTable contentTable;
     Image avatarImage = new Image();
+    private final HorizontalPanel pagerPanel;
+    private final Button previousButton;
+    private final Button nextButton;
+    private final Label currentPageLabel;
 
     public ListProfilesView() {
         DecoratorPanel contentTableDecorator = new DecoratorPanel();
@@ -45,6 +48,14 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
         profilesTable.getColumnFormatter().setWidth(0, "15px");
         contentTable.setWidget(1, 0, profilesTable);
 
+        pagerPanel = new HorizontalPanel();
+        previousButton = new Button("<< Previous");
+        nextButton = new Button("Next >>");
+        currentPageLabel = new Label();
+        pagerPanel.add(previousButton);
+        pagerPanel.add(currentPageLabel);
+        pagerPanel.add(nextButton);
+        contentTable.setWidget(2, 0, pagerPanel);
         contentTableDecorator.add(contentTable);
     }
 
@@ -54,6 +65,26 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
 
     public HasClickHandlers getDeleteButton() {
         return deleteButton;
+    }
+
+    public HasClickHandlers getPreviousButtonClick() {
+        return previousButton;
+    }
+
+    public Button getPreviousButton() {
+        return previousButton;
+    }
+
+    public HasClickHandlers getNextButtonClick() {
+        return nextButton;
+    }
+
+    public Button getNextButton() {
+        return nextButton;
+    }
+
+    public Label getCurrentPageLabel() {
+        return currentPageLabel;
     }
 
     public void setData(List<Profile> profiles) {

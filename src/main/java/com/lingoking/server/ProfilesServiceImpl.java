@@ -49,9 +49,25 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return errorMessages;
     }
 
-    public List<Profile> getListOfProfiles() {
+    public String getNumberOfPages() {
+        LoadProperties loadProperties = new LoadProperties();
+        double numberOfRows = ConnectionConfiguration.getNumberOfRows();
+        double rowsPerPage = Double.parseDouble(loadProperties.get("numberOfProfilesPerPage"));
+        double numberOfPages = numberOfRows / rowsPerPage;
+        System.out.println("numberofrows: " + numberOfRows + "/" + "rowsPerPage: " + rowsPerPage + " = numberofpages: " + numberOfPages);
+        numberOfPages = Math.ceil(numberOfPages);
+        String numberOfPagesString;
+        if (numberOfPages == (long) numberOfPages) {
+            numberOfPagesString = String.format("%d", (long) numberOfPages);
+        } else {
+            numberOfPagesString =  String.format("%s", numberOfPages);
+        }
+        return numberOfPagesString;
+    }
+
+    public List<Profile> getListOfProfiles(int offset) {
         List<Profile> profiles;
-        profiles = ConnectionConfiguration.fetchAllProfilesFromDB();
+        profiles = ConnectionConfiguration.fetchAllProfilesFromDB(offset);
         for (int i = 0; i < profiles.size(); ++i) {
             if (!profiles.get(i).getAvatar().equals("")) {
                 File file = new File(UploadServlet.IMAGES_DIRECTORY + "thumb_" + profiles.get(i).getAvatar());
@@ -61,6 +77,8 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return profiles;
     }
 
+
+
     private String imageToString(File file) {
         String imageDataString = "";
         try {
@@ -69,12 +87,10 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
             imageInFile.read(imageData);
             imageDataString = Base64.encodeBase64String(imageData);
             imageInFile.close();
-            System.out.println("Image "+ file.getName() +" Successfully Manipulated!");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return imageDataString;
-
     }
 
     public Boolean login(Profile profile) {
@@ -99,7 +115,7 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         for (int i = 0; i < ids.size(); ++i) {
             deleteProfiles(ids.get(i));
         }
-        return getListOfProfiles();
+        return getListOfProfiles(0);
     }
 
     public Profile fetchProfile(String id) {

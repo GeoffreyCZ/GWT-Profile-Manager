@@ -3,6 +3,7 @@ package com.lingoking.server;
 import com.lingoking.shared.model.Address;
 import com.lingoking.shared.model.Profile;
 
+import javax.swing.plaf.nimbus.State;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,12 +15,15 @@ public class ConnectionConfiguration {
     private final static String DB_IP = "dbIp";
     private final static String DB_NAME = "dbName";
     private final static String TABLE_NAME = "tableName";
+    private final static String NUMBER_OF_PROFILES_PER_PAGE = "numberOfProfilesPerPage";
 
     private static String dbUsername;
     private static String dbPassword;
     private static String dbIp;
     private static String dbName;
     private static String tableName;
+
+    private static int numberOfProfilesPerPage;
 
     public static Connection getConnection() {
 
@@ -29,12 +33,7 @@ public class ConnectionConfiguration {
         dbIp = loadProperties.get(DB_IP);
         dbName = loadProperties.get(DB_NAME);
         tableName = loadProperties.get(TABLE_NAME);
-
-//        dbUsername = "root";
-//        dbPassword = "root";
-//        dbIp = "127.0.0.1";
-//        dbName = "profiledb";
-//        tableName = "profiles";
+        numberOfProfilesPerPage = Integer.parseInt(loadProperties.get(NUMBER_OF_PROFILES_PER_PAGE));
 
         Connection connection = null;
         try {
@@ -74,7 +73,6 @@ public class ConnectionConfiguration {
                     profile.getAvatar() + "', '" +
                     salt + "');";
             statement = connection.prepareStatement(sql);
-            System.out.println(sql);
             statement.setString(1, profile.getFirstName());
             statement.executeUpdate();
         } catch (SQLException se) {
@@ -147,9 +145,7 @@ public class ConnectionConfiguration {
             String sql = "SELECT emailAddress, password FROM " + dbName + "." + tableName + " WHERE emailAddress = '"
                     + profile.getEmailAddress() + "' AND password = '" + profile.getPassword() + "';";
             ResultSet rs = statement.executeQuery(sql);
-            System.out.println(sql);
             while (rs.next()) {
-                System.out.println(rs.getString("emailAddress") + " " + rs.getString("password"));
                 if (rs.getString("emailAddress").equals(profile.getEmailAddress())) {
                     return true;
                 }
@@ -166,7 +162,31 @@ public class ConnectionConfiguration {
         return false;
     }
 
-    public static ArrayList<Profile> fetchAllProfilesFromDB() {
+    public static double getNumberOfRows() {
+        Connection connection;
+        Statement statement;
+        connection = getConnection();
+        double numberOfPages = 0;
+        try {
+            statement = connection.createStatement();
+            String sql = "SELECT COUNT(id) FROM " + dbName + "." + tableName + ";";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                numberOfPages = Double.parseDouble(rs.getString("COUNT(id)"));
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return numberOfPages;
+    }
+
+    public static ArrayList<Profile> fetchAllProfilesFromDB(int offset) {
         ArrayList<Profile> listOfProfiles = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -174,8 +194,9 @@ public class ConnectionConfiguration {
         try {
             statement = connection.createStatement();
             String sql = "SELECT id, firstName, lastName, emailAddress, avatarURL FROM " + dbName + "." + tableName +
-                    " ORDER BY firstName ASC, lastName ASC, emailAddress ASC;";
+                    " ORDER BY firstName ASC, lastName ASC, emailAddress ASC LIMIT " + numberOfProfilesPerPage + " OFFSET " + (offset * numberOfProfilesPerPage) + ";";
             ResultSet rs = statement.executeQuery(sql);
+            System.out.println("numberperpage " + numberOfProfilesPerPage);
             while (rs.next()) {
                 Profile profile = new Profile(rs.getString("id"), rs.getString("firstName"), rs.getString("lastName"),
                         rs.getString("emailAddress"), rs.getString("avatarURL"));
@@ -201,7 +222,6 @@ public class ConnectionConfiguration {
             statement = connection.createStatement();
             String sql = "DELETE FROM " + dbName + "." + tableName + " WHERE id IN (" + ids + ");";
             statement.executeUpdate(sql);
-            System.out.println(sql);
         } catch (SQLException se) {
             se.printStackTrace();
         } finally {
@@ -231,7 +251,6 @@ public class ConnectionConfiguration {
                     "', postcode = '" + newProfileData.getAddress().getPostcode() +
                     "', avatarURL = '" + newProfileData.getAvatar() +"' WHERE id = " + id + ";";
             statement.executeUpdate(sql);
-            System.out.println(sql);
         } catch (SQLException se) {
             se.printStackTrace();
         } finally {

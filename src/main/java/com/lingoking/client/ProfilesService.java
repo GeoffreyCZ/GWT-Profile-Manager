@@ -14,11 +14,12 @@ public interface ProfilesService extends RemoteService {
 
     ErrorMessages createProfile(Profile profile);
     List<Profile> deleteProfiles(List<String> ids);
-    List<Profile> getListOfProfiles();
+    List<Profile> getListOfProfiles(int offset);
     ErrorMessages editProfile(String id, Profile profile);
     Profile fetchProfile(String id);
     Boolean login(Profile profile);
     Boolean checkEmail(String id, String email);
+    String getNumberOfPages();
 
     class App {
         private static ProfilesServiceAsync ourInstance = GWT.create(ProfilesService.class);
