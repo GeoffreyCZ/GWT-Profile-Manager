@@ -196,7 +196,6 @@ public class ConnectionConfiguration {
             String sql = "SELECT id, firstName, lastName, emailAddress, avatarURL FROM " + dbName + "." + tableName +
                     " ORDER BY firstName ASC, lastName ASC, emailAddress ASC LIMIT " + numberOfProfilesPerPage + " OFFSET " + (offset * numberOfProfilesPerPage) + ";";
             ResultSet rs = statement.executeQuery(sql);
-            System.out.println("numberperpage " + numberOfProfilesPerPage);
             while (rs.next()) {
                 Profile profile = new Profile(rs.getString("id"), rs.getString("firstName"), rs.getString("lastName"),
                         rs.getString("emailAddress"), rs.getString("avatarURL"));

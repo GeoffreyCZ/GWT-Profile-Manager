@@ -54,7 +54,6 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         double numberOfRows = ConnectionConfiguration.getNumberOfRows();
         double rowsPerPage = Double.parseDouble(loadProperties.get("numberOfProfilesPerPage"));
         double numberOfPages = numberOfRows / rowsPerPage;
-        System.out.println("numberofrows: " + numberOfRows + "/" + "rowsPerPage: " + rowsPerPage + " = numberofpages: " + numberOfPages);
         numberOfPages = Math.ceil(numberOfPages);
         String numberOfPagesString;
         if (numberOfPages == (long) numberOfPages) {
