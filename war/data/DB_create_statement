@@ -13,6 +13,8 @@ CREATE TABLE `profiles` (
   `postcode` varchar(10) DEFAULT NULL,
   `avatarURL` varchar(100) DEFAULT NULL,
   `salt` varchar(20) NOT NULL,
+  `token` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `emailAddress_UNIQUE` (`emailAddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+

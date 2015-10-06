@@ -1,7 +1,6 @@
 package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.presenter.EditProfilePresenter;
 import com.lingoking.shared.model.Address;

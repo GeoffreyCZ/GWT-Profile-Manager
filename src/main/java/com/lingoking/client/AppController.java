@@ -3,7 +3,10 @@ package com.lingoking.client;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.lingoking.client.events.*;
 import com.lingoking.client.presenter.*;
@@ -13,6 +16,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     private final HandlerManager eventBus;
     private final ProfilesServiceAsync rpcService;
     private HasWidgets container;
+    private Presenter presenter;
 
     public AppController(ProfilesServiceAsync rpcService, HandlerManager eventBus) {
         this.eventBus = eventBus;
@@ -27,6 +31,20 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
             @Override
             public void onUserSignedIn(UserSignedInEvent event) {
                 doSignIn();
+            }
+        });
+
+        eventBus.addHandler(ShowWelcomePageEvent.TYPE, new ShowWelcomePageEventHandler() {
+            @Override
+            public void onShowWelcomePage(ShowWelcomePageEvent event) {
+                doShowWelcomePage();
+            }
+        });
+
+        eventBus.addHandler(UserNotSignedInEvent.TYPE, new UserNotSignedInEventHandler() {
+            @Override
+            public void onUserNotSignedIn(UserNotSignedInEvent event) {
+                redirectToLoginPage();
             }
         });
 
@@ -80,6 +98,14 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         });
     }
 
+    private void redirectToLoginPage() {
+        History.newItem("login");
+    }
+
+    private void doShowWelcomePage() {
+        History.newItem("home");
+    }
+
     private void doSignIn() {
         History.newItem("home");
     }
@@ -131,17 +157,17 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         final String token2 = tokens.length > 1 ? tokens[1] : "";
 
         if (token != null) {
-            Presenter presenter = null;
+            presenter = null;
             if (token.equals("login")) {
                 presenter = new LoginPresenter(rpcService, eventBus, new LoginView());
             }
 
             if (token.equals("home")) {
-                presenter = new WelcomePagePresenter(eventBus, new WelcomePageView());
+                presenter = new WelcomePagePresenter(rpcService, eventBus, new WelcomePageView());
             }
             if (token.equals("list")) {
                 presenter = new ListProfilesPresenter(rpcService, eventBus, new ListProfilesView());
-            }
+            } 
             if (token.equals("create")) {
                 presenter = new CreateProfilePresenter(rpcService, eventBus, new CreateProfileView());
             }

@@ -6,7 +6,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.lingoking.shared.model.ErrorMessages;
 import com.lingoking.shared.model.Profile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RemoteServiceRelativePath("profilesService")
@@ -17,9 +16,12 @@ public interface ProfilesService extends RemoteService {
     List<Profile> getListOfProfiles(int offset);
     ErrorMessages editProfile(String id, Profile profile);
     Profile fetchProfile(String id);
-    Boolean login(Profile profile);
+    String login(Profile profile);
     Boolean checkEmail(String id, String email);
     String getNumberOfPages();
+    Boolean checkCookieToken(String token);
+
+
 
     class App {
         private static ProfilesServiceAsync ourInstance = GWT.create(ProfilesService.class);

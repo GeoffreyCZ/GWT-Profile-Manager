@@ -4,12 +4,16 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.lingoking.client.ProfilesServiceAsync;
 import com.lingoking.client.events.CreateProfileCancelledEvent;
 import com.lingoking.client.events.ProfileCreatedEvent;
+import com.lingoking.client.events.UserNotSignedInEvent;
+import com.lingoking.client.views.CreateProfileView;
+import com.lingoking.client.views.LoginView;
 import com.lingoking.shared.model.ErrorMessages;
 import com.lingoking.shared.model.Profile;
 
@@ -52,6 +56,19 @@ public class CreateProfilePresenter implements Presenter {
     }
 
     public void bind() {
+        rpcService.checkCookieToken(Cookies.getCookie("token"), new AsyncCallback<Boolean>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("Error calling server.");
+            }
+
+            @Override
+            public void onSuccess(Boolean result) {
+                if (!result) {
+                    eventBus.fireEvent(new UserNotSignedInEvent());
+                }
+            }
+        });
         this.display.getCreateButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 String action;

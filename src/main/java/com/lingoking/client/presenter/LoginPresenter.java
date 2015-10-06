@@ -13,6 +13,8 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.lingoking.client.ProfilesServiceAsync;
+import com.lingoking.client.events.ShowWelcomePageEvent;
+import com.lingoking.client.events.UserNotSignedInEvent;
 import com.lingoking.client.events.UserSignedInEvent;
 import com.lingoking.shared.model.Profile;
 
@@ -41,6 +43,21 @@ public class LoginPresenter implements Presenter {
     }
 
     public void bind() {
+
+        rpcService.checkCookieToken(Cookies.getCookie("token"), new AsyncCallback<Boolean>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("Error calling server.");
+            }
+
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    eventBus.fireEvent(new ShowWelcomePageEvent());
+                }
+            }
+        });
+
         this.display.getLoginButton().addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
             	profile.setEmailAddress(display.getProfile().getEmailAddress());

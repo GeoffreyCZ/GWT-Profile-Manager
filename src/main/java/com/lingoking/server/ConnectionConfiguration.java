@@ -3,10 +3,10 @@ package com.lingoking.server;
 import com.lingoking.shared.model.Address;
 import com.lingoking.shared.model.Profile;
 
-import javax.swing.plaf.nimbus.State;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ConnectionConfiguration {
 
@@ -60,20 +60,66 @@ public class ConnectionConfiguration {
         PreparedStatement statement;
         connection = getConnection();
         try {
-            String sql = "INSERT INTO " + dbName + "." + tableName + " VALUES (null , ?, '" +
-            //                    profile.getFirstName() + "', '" +
-                    profile.getLastName() + "', '" +
-                    profile.getEmailAddress() + "', '" +
-                    hashedPassword + "', '" +
-                    profile.getPhoneNumber() + "', '" +
-                    profile.getAddress().getStreet() + "', '" +
-                    profile.getAddress().getStreetNumber() + "', '" +
-                    profile.getAddress().getCity() + "', '" +
-                    profile.getAddress().getPostcode() + "', '" +
-                    profile.getAvatar() + "', '" +
-                    salt + "');";
+            String sql = "INSERT INTO " + dbName + "." + tableName + " VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, null);";
             statement = connection.prepareStatement(sql);
             statement.setString(1, profile.getFirstName());
+            statement.setString(2, profile.getLastName());
+            statement.setString(3, profile.getEmailAddress());
+            statement.setString(4, hashedPassword);
+            statement.setString(5, profile.getPhoneNumber());
+            statement.setString(6, profile.getAddress().getStreet());
+            statement.setString(7, profile.getAddress().getStreetNumber());
+            statement.setString(8, profile.getAddress().getCity());
+            statement.setString(9, profile.getAddress().getPostcode());
+            statement.setString(10, profile.getAvatar());
+            statement.setString(11, salt);
+            statement.executeUpdate();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static Boolean checkCookieToken(String token) {
+        Connection connection;
+        PreparedStatement statement;
+        connection = getConnection();
+        try {
+            String sql = "SELECT token FROM " + dbName + "." + tableName + " WHERE token = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, token);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("token").equals(token)) {
+                    return true;
+                }
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public static void setCookieToken(String emailAddress, String token) {
+        Connection connection;
+        PreparedStatement statement;
+        connection = getConnection();
+
+        try {
+            String sql = "UPDATE " + dbName + "." + tableName + " SET token = (?) WHERE emailAddress = '" + emailAddress + "';";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, token);
             statement.executeUpdate();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -88,13 +134,14 @@ public class ConnectionConfiguration {
 
     public static Boolean searchInDB(String id, String email) {
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
         connection = getConnection();
         try {
-            statement = connection.createStatement();
-            String sql = "SELECT emailAddress FROM " + dbName + "." + tableName + " WHERE emailAddress = '"
-                    + email + "' AND id != '" + id + "';";
-            ResultSet rs = statement.executeQuery(sql);
+            String sql = "SELECT emailAddress FROM " + dbName + "." + tableName + " WHERE emailAddress = ? AND id != ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            statement.setString(2, id);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 if (rs.getString("emailAddress").equals(email)) {
                     return true;
@@ -114,13 +161,14 @@ public class ConnectionConfiguration {
 
     public static String getSalt(String email) {
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
         connection = getConnection();
         String salt = "";
         try {
-            statement = connection.createStatement();
-            String sql = "SELECT salt FROM " + dbName + "." + tableName + " WHERE emailAddress = '" + email + "';";
-            ResultSet rs = statement.executeQuery(sql);
+            String sql = "SELECT salt FROM " + dbName + "." + tableName + " WHERE emailAddress = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 salt = rs.getString("salt");
             }
@@ -138,13 +186,15 @@ public class ConnectionConfiguration {
 
     public static Boolean searchLoginCredentials(Profile profile) {
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
         connection = getConnection();
         try {
-            statement = connection.createStatement();
-            String sql = "SELECT emailAddress, password FROM " + dbName + "." + tableName + " WHERE emailAddress = '"
-                    + profile.getEmailAddress() + "' AND password = '" + profile.getPassword() + "';";
-            ResultSet rs = statement.executeQuery(sql);
+            String sql = "SELECT emailAddress, password FROM " + dbName + "." + tableName +
+                    " WHERE emailAddress = ? AND password = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, profile.getEmailAddress());
+            statement.setString(2, profile.getPassword());
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 if (rs.getString("emailAddress").equals(profile.getEmailAddress())) {
                     return true;
@@ -164,13 +214,13 @@ public class ConnectionConfiguration {
 
     public static double getNumberOfRows() {
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
         connection = getConnection();
         double numberOfPages = 0;
         try {
-            statement = connection.createStatement();
             String sql = "SELECT COUNT(id) FROM " + dbName + "." + tableName + ";";
-            ResultSet rs = statement.executeQuery(sql);
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 numberOfPages = Double.parseDouble(rs.getString("COUNT(id)"));
             }
@@ -234,22 +284,24 @@ public class ConnectionConfiguration {
 
     public static Profile editProfileInDB(String id, Profile newProfileData) {
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
         connection = getConnection();
         try {
-            statement = connection.createStatement();
             String sql = "UPDATE " + dbName + "." + tableName + " SET " +
-                    "firstName = '" + newProfileData.getFirstName() +
-                    "', lastName = '" + newProfileData.getLastName() +
-                    "', emailAddress = '" + newProfileData.getEmailAddress() +
-                    "', password = '" + newProfileData.getPassword() +
-                    "', phoneNumber = '" + newProfileData.getPhoneNumber() +
-                    "', street = '" + newProfileData.getAddress().getStreet() +
-                    "', streetNumber = '" + newProfileData.getAddress().getStreetNumber() +
-                    "', city = '" + newProfileData.getAddress().getCity() +
-                    "', postcode = '" + newProfileData.getAddress().getPostcode() +
-                    "', avatarURL = '" + newProfileData.getAvatar() +"' WHERE id = " + id + ";";
-            statement.executeUpdate(sql);
+                    "firstName = ?, lastName = ?, emailAddress = ?, phoneNumber = ?, street = ?, " +
+                    "streetNumber = ?, city = ?, postcode = ?, avatarURL = ? WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, newProfileData.getFirstName());
+            statement.setString(2, newProfileData.getLastName());
+            statement.setString(3, newProfileData.getEmailAddress());
+            statement.setString(4, newProfileData.getPhoneNumber());
+            statement.setString(5, newProfileData.getAddress().getStreet());
+            statement.setString(6, newProfileData.getAddress().getStreetNumber());
+            statement.setString(7, newProfileData.getAddress().getCity());
+            statement.setString(8, newProfileData.getAddress().getPostcode());
+            statement.setString(9, newProfileData.getAvatar());
+            statement.setString(10, id);
+            statement.executeUpdate();
         } catch (SQLException se) {
             se.printStackTrace();
         } finally {
@@ -264,15 +316,16 @@ public class ConnectionConfiguration {
 
     public static Profile fetchProfileFromDB(String id) {
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
         connection = getConnection();
         Profile profile = new Profile();
         Address address = new Address();
         try {
-            statement = connection.createStatement();
             String sql = "SELECT firstName, lastName, emailAddress, phoneNumber, street, streetNumber, city, postcode, " +
-                    "avatarURL FROM " + dbName + "." + tableName + " WHERE id = " + id + ";";
-            ResultSet rs = statement.executeQuery(sql);
+                    "avatarURL FROM " + dbName + "." + tableName + " WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 profile.setFirstName(rs.getString("firstName"));
                 profile.setLastName(rs.getString("lastName"));

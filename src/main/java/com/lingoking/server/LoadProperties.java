@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class LoadProperties {
 
-    public static final String PROPERTY_FILE = "/config.properties";
+    public static final String PROPERTY_FILE = "config.properties";
     private Properties properties = new Properties();
 
     public LoadProperties() {

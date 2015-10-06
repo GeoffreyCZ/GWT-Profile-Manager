@@ -43,7 +43,7 @@ public class ListProfilesView extends Composite implements ListProfilesPresenter
 
         profilesTable = new FlexTable();
         profilesTable.setCellSpacing(0);
-        profilesTable.setCellPadding(0);
+        profilesTable.setCellPadding(10);
         profilesTable.setWidth("100%");
         profilesTable.getColumnFormatter().setWidth(0, "15px");
         contentTable.setWidget(1, 0, profilesTable);

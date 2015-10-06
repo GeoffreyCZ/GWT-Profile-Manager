@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class UploadServlet extends HttpServlet {
         String file_name = request.getParameter("profile_name");
         response.setContentType("text/html");
 
-        PrintWriter out = response.getWriter( );
+//        PrintWriter out = response.getWriter( );
         if( !isMultipart ){
             System.out.println("No file uploaded");
             return;

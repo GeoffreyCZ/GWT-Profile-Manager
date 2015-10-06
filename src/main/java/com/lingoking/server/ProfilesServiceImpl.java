@@ -4,9 +4,11 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import com.lingoking.client.ProfilesService;
 import com.lingoking.client.presenter.CreateProfilePresenter;
@@ -76,8 +78,6 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return profiles;
     }
 
-
-
     private String imageToString(File file) {
         String imageDataString = "";
         try {
@@ -92,13 +92,30 @@ public class ProfilesServiceImpl extends RemoteServiceServlet implements
         return imageDataString;
     }
 
-    public Boolean login(Profile profile) {
+    public Boolean checkCookieToken(String token) {
+        return ConnectionConfiguration.checkCookieToken(token);
+    }
+
+    public String login(Profile profile) {
+    	String token;
         String hashedPassword;
         String salt;
         salt = ConnectionConfiguration.getSalt(profile.getEmailAddress());
         hashedPassword = PasswordHash.getPassword(profile.getPassword(), salt);
         profile.setPassword(hashedPassword);
-        return ConnectionConfiguration.searchLoginCredentials(profile);
+        if (ConnectionConfiguration.searchLoginCredentials(profile)) {
+        	token = generateCookieToken(profile.getEmailAddress());
+        } else {
+        	token = "";
+        }
+        return token;
+    }
+    
+    private String generateCookieToken(String emailAddress) {
+    	UUID token = UUID.randomUUID();
+        String tokenString = token.toString();
+        ConnectionConfiguration.setCookieToken(emailAddress, tokenString);
+    	return tokenString;
     }
 
     public Boolean checkEmail(String id, String email) {

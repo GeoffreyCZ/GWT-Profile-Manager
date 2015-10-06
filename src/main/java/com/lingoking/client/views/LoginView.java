@@ -2,15 +2,15 @@ package com.lingoking.client.views;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.*;
-import com.lingoking.client.presenter.LoginPresenter;
 import com.lingoking.shared.model.Profile;
+import com.lingoking.client.presenter.LoginPresenter;
 
 public class LoginView extends Composite implements LoginPresenter.Display {
 
     private final Label emailAddress;
     private final TextBox emailAddressTextBox;
     private final Label password;
-    private final PasswordTextBox passwordTextBox;
+    private final PasswordTextBox passwordTextBox;	
     private final Button loginButton;
     private final Label loginErrorMessage;
 
@@ -40,9 +40,10 @@ public class LoginView extends Composite implements LoginPresenter.Display {
         loginTable.setWidget(3, 0, loginButton);
 
         loginErrorMessage = new Label();
-        loginTable.setWidget(4, 0, loginErrorMessage);
+        loginErrorMessage.addStyleName("errorMessage");
 
         loginPanel.add(loginTable);
+        loginPanel.add(loginErrorMessage);
     }
 
     public Profile getProfile() {
